@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Rookie.Ecom.DataAccessor.Entities
 {
-    internal class Role : BaseEntity
+    public class Role : BaseEntity
     {
         [Required]
         public string RoleName { get; set; }

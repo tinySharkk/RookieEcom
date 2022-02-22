@@ -16,6 +16,7 @@ namespace Rookie.Ecom.Business
             services.AddDataAccessorLayer(configuration);
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<ICityService, CityService>();
 
             services.AddRefitClient<IIdentityProviderService>()
                 .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:5001"));

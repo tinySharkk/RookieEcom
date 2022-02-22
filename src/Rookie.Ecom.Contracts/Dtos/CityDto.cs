@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
-namespace Rookie.Ecom.DataAccessor.Entities
+namespace Rookie.Ecom.Contracts.Dtos
 {
-    public class City :BaseEntity
+    public class CityDto : BaseDto
     {
-        [Required]
         public string Name { get; set; }
     }
 }

@@ -8,6 +8,5 @@ namespace Rookie.Ecom.Contracts.Dtos
 
         public string Desc { get; set; }
 
-        public string ImageUrl { get; set; }
     }
 }

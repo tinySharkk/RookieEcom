@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Rookie.Ecom.DataAccessor.Entities
 {
-    internal class Cart : BaseEntity
+    public class Cart : BaseEntity
     {
         [Required]
         public Guid UserId { get; set; }

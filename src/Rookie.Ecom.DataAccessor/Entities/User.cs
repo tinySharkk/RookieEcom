@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Rookie.Ecom.DataAccessor.Entities
 {
-    internal class User : BaseEntity
+    public class User : BaseEntity
     {
         [Required]
         [StringLength(maximumLength: 50)]
@@ -26,6 +26,8 @@ namespace Rookie.Ecom.DataAccessor.Entities
         public int PhoneNumber { get; set; }
 
         public ICollection<Role> Roles { get; set; }
+
+        public ICollection<Order> Orders { get; set; }
 
     }
 }

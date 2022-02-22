@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Rookie.Ecom.DataAccessor.Entities
 {
-    internal class Address : BaseEntity
+    public class Address : BaseEntity
     {
         public Guid? UserId { get; set; }
 

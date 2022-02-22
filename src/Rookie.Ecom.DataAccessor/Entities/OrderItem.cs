@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Rookie.Ecom.DataAccessor.Entities
 {
-    internal class OrderItem : BaseEntity
+    public class OrderItem : BaseEntity
     {
         [Required]
         public Guid? OrderId { get; set; }
@@ -22,5 +22,7 @@ namespace Rookie.Ecom.DataAccessor.Entities
         public int Quantity { get; set; }
 
         public Order Order { get; set; }
+
+        public Product Product { get; set; }
     }
 }

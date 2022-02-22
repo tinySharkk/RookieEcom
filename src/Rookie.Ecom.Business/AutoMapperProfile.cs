@@ -18,6 +18,8 @@ namespace Rookie.Ecom.Business
 
             CreateMap<ProductDto, Product>();
 
+            CreateMap<CityDto, City>();
+
             CreateMap<ProductImageDto, ProductImage>();
         }
 
@@ -26,6 +28,7 @@ namespace Rookie.Ecom.Business
             CreateMap<Category, CategoryDto>();
             CreateMap<Product, ProductDto>();
             CreateMap<ProductImage, ProductImageDto>();
+            CreateMap<City, CityDto>();
         }
     }
 }

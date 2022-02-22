@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Rookie.Ecom.DataAccessor.Entities
 {
-    internal class UserAccount : BaseEntity
+    public class UserAccount : BaseEntity
     {
         [Required]
         public string UserName { get; set; }
