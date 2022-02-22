@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Rookie.Ecom.DataAccessor.Entities
 {
-    public class ProductPicture : BaseEntity
+    public class ProductImage : BaseEntity
     {
         [StringLength(maximumLength: 500)]
-        public string PictureUrl { get; set; }
+        public string ImageUrl { get; set; }
 
         [StringLength(maximumLength: 100)]
         public string Title { get; set; }

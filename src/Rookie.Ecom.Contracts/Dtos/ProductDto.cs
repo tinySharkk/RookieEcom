@@ -21,6 +21,6 @@ namespace Rookie.Ecom.Contracts.Dtos
 
         public CategoryDto Category { get; set; }
 
-        public ICollection<ProductPictureDto> ProductPictures { get; set; }
+        public ICollection<ProductImageDto> ProductImage { get; set; }
     }
 }

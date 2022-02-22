@@ -18,14 +18,14 @@ namespace Rookie.Ecom.Business
 
             CreateMap<ProductDto, Product>();
 
-            CreateMap<ProductPictureDto, ProductPicture>();
+            CreateMap<ProductImageDto, ProductImage>();
         }
 
         private void FromDataAccessorLayer()
         {
             CreateMap<Category, CategoryDto>();
             CreateMap<Product, ProductDto>();
-            CreateMap<ProductPicture, ProductPictureDto>();
+            CreateMap<ProductImage, ProductImageDto>();
         }
     }
 }

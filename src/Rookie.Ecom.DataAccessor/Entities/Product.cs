@@ -16,16 +16,14 @@ namespace Rookie.Ecom.DataAccessor.Entities
 
         public decimal Price { get; set; }
 
-        public decimal? Cost { get; set; }
+        public int InStock { get; set; }
 
         public bool IsFeatured { get; set; }
-
-        public int Quantity { get; set; }
 
         public Guid? CategoryId { get; set; }
 
         public Category Category { get; set; }
 
-        public ICollection<ProductPicture> ProductPictures { get; set; }
+        public ICollection<ProductImage> ProductImages { get; set; }
     }
 }

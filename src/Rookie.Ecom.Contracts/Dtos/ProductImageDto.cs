@@ -2,7 +2,7 @@
 
 namespace Rookie.Ecom.Contracts.Dtos
 {
-    public class ProductPictureDto : BaseDto
+    public class ProductImageDto : BaseDto
     {
         public string PictureUrl { get; set; }
 
