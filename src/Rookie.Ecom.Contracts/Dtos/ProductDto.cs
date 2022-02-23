@@ -11,16 +11,14 @@ namespace Rookie.Ecom.Contracts.Dtos
 
         public decimal Price { get; set; }
 
-        public decimal? Cost { get; set; }
+        public int InStock { get; set; }
 
         public bool IsFeatured { get; set; }
-
-        public int Quantity { get; set; }
 
         public Guid? CategoryId { get; set; }
 
         public CategoryDto Category { get; set; }
 
-        public ICollection<ProductImageDto> ProductImage { get; set; }
+        public ICollection<ProductImageDto> ProductImages { get; set; }
     }
 }

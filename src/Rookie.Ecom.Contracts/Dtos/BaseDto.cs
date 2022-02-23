@@ -12,6 +12,6 @@ namespace Rookie.Ecom.Contracts.Dtos
 
         public Guid? CreatorId { get; set; }
 
-        //public bool Pubished { get; set; }
+        public bool Pubished { get; set; }
     }
 }

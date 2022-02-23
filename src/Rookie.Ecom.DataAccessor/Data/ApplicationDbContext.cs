@@ -6,6 +6,8 @@ namespace Rookie.Ecom.DataAccessor.Data
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Category> Categories { get; set; }
+
+        //TO-DO
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
