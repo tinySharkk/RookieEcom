@@ -22,6 +22,24 @@ namespace Rookie.Ecom.Contracts.Dtos
 
         public ICollection<OrderDto> Orders { get; set; }
     }
+    public class UserCreateDto : BaseDto
+    {
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public UserGender Gender { get; set; }
+
+        public string Email { get; set; }
+
+        public int PhoneNumber { get; set; }
+
+    }
+
+    public class UserUpdateDto : UserCreateDto
+    {
+
+    }
 }
 
 public enum UserGender

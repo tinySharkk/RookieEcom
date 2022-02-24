@@ -59,7 +59,23 @@ namespace Rookie.Ecom.Business.Services
 
         public async Task<PagedResponseModel<ProductDto>> PagedQueryAsync(string name, int page, int limit)
         {
-            throw new NotImplementedException();
+            var query = _baseRepository.Entities;
+
+            query = query.Where(x => string.IsNullOrEmpty(name) || x.Name.Contains(name));
+
+            query = query.OrderBy(x => x.Name);
+
+            var assets = await query
+                .AsNoTracking()
+                .PaginateAsync(page, limit);
+
+            return new PagedResponseModel<ProductDto>
+            {
+                CurrentPage = assets.CurrentPage,
+                TotalPages = assets.TotalPages,
+                TotalItems = assets.TotalItems,
+                Items = _mapper.Map<IEnumerable<ProductDto>>(assets.Items)
+            };
         }
 
         public async Task UpdateAsync(ProductDto productDto)

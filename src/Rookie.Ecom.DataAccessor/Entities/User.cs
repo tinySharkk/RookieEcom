@@ -28,6 +28,8 @@ namespace Rookie.Ecom.DataAccessor.Entities
         public ICollection<Role> Roles { get; set; }
 
         public ICollection<Order> Orders { get; set; }
+        
+        public UserAccount UserAccount { get; set; }
 
     }
 }
@@ -35,4 +37,5 @@ namespace Rookie.Ecom.DataAccessor.Entities
 public enum UserGender { 
     Male,
     Female,
+    Other,
 }

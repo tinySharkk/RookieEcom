@@ -7,9 +7,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Rookie.Ecom.DataAccessor.Entities
 {
-    public class UserAccount
+    public class UserAccount : BaseEntity
     {
-        [Key]
+        [Required]
         public string UserName { get; set; }
 
         [Required]
@@ -19,14 +19,6 @@ namespace Rookie.Ecom.DataAccessor.Entities
         public Guid? UserId { get; set; }
 
         public User User { get; set; }
-
-        public DateTime CreatedDate { get; set; }
-
-        public DateTime UpdatedDate { get; set; }
-
-        public Guid? CreatorId { get; set; }
-
-        public bool Pubished { get; set; }
 
 
     }

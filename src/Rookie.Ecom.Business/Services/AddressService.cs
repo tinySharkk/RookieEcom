@@ -23,11 +23,11 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<AddressDto> AddAsync(AddressDto addressDto)
+        public async Task<AddressCreateDto> AddAsync(AddressCreateDto addressDto)
         {
             var address = _mapper.Map<Address>(addressDto);
             var item = await _baseRepository.AddAsync(address);
-            return _mapper.Map<AddressDto>(item);
+            return _mapper.Map<AddressCreateDto>(item);
         }
 
         public async Task DeleteAsync(Guid id)
@@ -59,12 +59,31 @@ namespace Rookie.Ecom.Business.Services
 
         public async Task<PagedResponseModel<AddressDto>> PagedQueryAsync(string name, int page, int limit)
         {
-            throw new NotImplementedException();
+            var query = _baseRepository.Entities;
+
+            query = query.Where(x => string.IsNullOrEmpty(name) || x.AddressLine.Contains(name));
+
+            query = query.OrderBy(x => x.AddressLine);
+
+            var assets = await query
+                .AsNoTracking()
+                .PaginateAsync(page, limit);
+
+            return new PagedResponseModel<AddressDto>
+            {
+                CurrentPage = assets.CurrentPage,
+                TotalPages = assets.TotalPages,
+                TotalItems = assets.TotalItems,
+                Items = _mapper.Map<IEnumerable<AddressDto>>(assets.Items)
+            };
         }
 
-        public async Task UpdateAsync(AddressDto addressDto)
+        public async Task UpdateAsync(AddressUpdateDto addressDto)
         {
             var address = _mapper.Map<Address>(addressDto);
+
+            address.UpdatedDate = DateTime.Now;
+
             await _baseRepository.UpdateAsync(address);
         }
     }

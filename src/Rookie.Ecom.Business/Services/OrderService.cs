@@ -52,10 +52,26 @@ namespace Rookie.Ecom.Business.Services
             throw new NotImplementedException();
         }
 
-        public async Task<PagedResponseModel<OrderDto>> PagedQueryAsync(string name, int page, int limit)
+      /*  public async Task<PagedResponseModel<OrderDto>> PagedQueryAsync(Guid name, int page, int limit)
         {
-            throw new NotImplementedException();
-        }
+            var query = _baseRepository.Entities;
+
+            query = query.Where(x => string.IsNullOrEmpty(name) || x.Id.Contains(name));
+
+            query = query.OrderBy(x => x.Name);
+
+            var assets = await query
+                .AsNoTracking()
+                .PaginateAsync(page, limit);
+
+            return new PagedResponseModel<CategoryDto>
+            {
+                CurrentPage = assets.CurrentPage,
+                TotalPages = assets.TotalPages,
+                TotalItems = assets.TotalItems,
+                Items = _mapper.Map<IEnumerable<CategoryDto>>(assets.Items)
+            };
+        }*/
 
         public async Task UpdateAsync(OrderDto orderDto)
         {

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rookie.Ecom.DataAccessor.Data;
 
 namespace Rookie.Ecom.DataAccessor.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220224023003_ChangeUserAccountEntity")]
+    partial class ChangeUserAccountEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -473,8 +475,7 @@ namespace Rookie.Ecom.DataAccessor.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserAccount");
                 });
@@ -600,8 +601,8 @@ namespace Rookie.Ecom.DataAccessor.Migrations
             modelBuilder.Entity("Rookie.Ecom.DataAccessor.Entities.UserAccount", b =>
                 {
                     b.HasOne("Rookie.Ecom.DataAccessor.Entities.User", "User")
-                        .WithOne("UserAccount")
-                        .HasForeignKey("Rookie.Ecom.DataAccessor.Entities.UserAccount", "UserId")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -626,8 +627,6 @@ namespace Rookie.Ecom.DataAccessor.Migrations
             modelBuilder.Entity("Rookie.Ecom.DataAccessor.Entities.User", b =>
                 {
                     b.Navigation("Orders");
-
-                    b.Navigation("UserAccount");
                 });
 #pragma warning restore 612, 618
         }

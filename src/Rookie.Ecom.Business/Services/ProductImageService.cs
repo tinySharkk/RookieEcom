@@ -52,10 +52,10 @@ namespace Rookie.Ecom.Business.Services
             throw new NotImplementedException();
         }
 
-        public async Task<PagedResponseModel<ProductImageDto>> PagedQueryAsync(string name, int page, int limit)
+       /* public async Task<PagedResponseModel<ProductImageDto>> PagedQueryAsync(string name, int page, int limit)
         {
             throw new NotImplementedException();
-        }
+        }*/
 
         public async Task UpdateAsync(ProductImageDto productImageDto)
         {

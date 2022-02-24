@@ -16,5 +16,17 @@
             public const int MinLenghCharactersForDesc = 0;
             public const int MaxLenghCharactersForDesc = 100;
         }
+
+        public static class AddressRules
+        {
+            public const int MinAddressLine = 0;
+            public const int MaxAddressLine = 255;
+        }
+
+        public static class UserRules
+        {
+            public const int MaxFirstName = 50;
+            public const int MaxLastName = 100;
+        }
     }
 }

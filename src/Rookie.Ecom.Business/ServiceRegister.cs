@@ -15,8 +15,19 @@ namespace Rookie.Ecom.Business
         {
             services.AddDataAccessorLayer(configuration);
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+          
+
+            services.AddTransient<IAddressService, AddressService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<ICityService, CityService>();
+            services.AddTransient<IOrderItemService, OrderItemService>();
+            services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IProductImageService, ProductImageService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IRatingService, RatingService>();
+            services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IUserAccountService, UserAccountService>();
+            services.AddTransient<IUserService, UserService>();
 
             services.AddRefitClient<IIdentityProviderService>()
                 .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:5001"));

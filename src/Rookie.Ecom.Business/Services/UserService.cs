@@ -23,11 +23,11 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<UserDto> AddAsync(UserDto userDto)
+        public async Task<UserCreateDto> AddAsync(UserCreateDto userDto)
         {
             var user = _mapper.Map<User>(userDto);
             var item = await _baseRepository.AddAsync(user);
-            return _mapper.Map<UserDto>(item);
+            return _mapper.Map<UserCreateDto>(item);
         }
 
         public async Task DeleteAsync(Guid id)
@@ -69,7 +69,23 @@ namespace Rookie.Ecom.Business.Services
 
         public async Task<PagedResponseModel<UserDto>> PagedQueryAsync(string name, int page, int limit)
         {
-            throw new NotImplementedException();
+            var query = _baseRepository.Entities;
+
+            query = query.Where(x => string.IsNullOrEmpty(name) || x.FirstName.Contains(name));
+
+            query = query.OrderBy(x => x.FirstName);
+
+            var assets = await query
+                .AsNoTracking()
+                .PaginateAsync(page, limit);
+
+            return new PagedResponseModel<UserDto>
+            {
+                CurrentPage = assets.CurrentPage,
+                TotalPages = assets.TotalPages,
+                TotalItems = assets.TotalItems,
+                Items = _mapper.Map<IEnumerable<UserDto>>(assets.Items)
+            };
         }
 
         public async Task UpdateAsync(UserDto userDto)
