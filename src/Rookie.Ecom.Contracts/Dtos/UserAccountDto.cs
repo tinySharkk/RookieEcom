@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rookie.Ecom.Contracts.Dtos
 {
-    public class UserAccountDto
+    public class UserAccountDto : BaseDto
     {
         public string UserName { get; set; }
 
@@ -16,12 +16,16 @@ namespace Rookie.Ecom.Contracts.Dtos
 
         public UserDto User { get; set; }
 
-        public DateTime CreatedDate { get; set; }
-
-        public DateTime UpdatedDate { get; set; }
-
-        public Guid? CreatorId { get; set; }
-
-        public bool Pubished { get; set; }
     }
+
+    public class UserAccountInfoDto : BaseDto
+    {
+        public string UserName { get; set; }
+
+        public string Password { get; set; }
+
+        public Guid? UserId { get; set; }
+
+    }
+
 }

@@ -34,9 +34,9 @@ namespace Rookie.Ecom.Admin.Validators
           ).WithMessage("Duplicate record");
         }
     }
-    public class AddressCreateDtoValidator : BaseValidator<AddressCreateDto>
+    public class AddressInfoDtoValidator : BaseValidator<AddressInfoDto>
     {
-        public AddressCreateDtoValidator(IAddressService addressService)
+        public AddressInfoDtoValidator(IAddressService addressService)
         {
             RuleFor(m => m.Id)
                  .NotNull()
@@ -62,32 +62,4 @@ namespace Rookie.Ecom.Admin.Validators
         }
     }
 
-    public class AddressUpdateDtoValidator : BaseValidator<AddressUpdateDto>
-    {
-        public AddressUpdateDtoValidator(IAddressService addressService)
-        {
-            RuleFor(m => m.Id)
-                 .NotNull()
-                 .WithMessage(x => string.Format(ErrorTypes.Common.RequiredError, nameof(x.Id)));
-
-
-            RuleFor(m => m.AddressLine)
-                  .NotEmpty()
-                  .WithMessage(x => string.Format(ErrorTypes.Common.RequiredError, nameof(x.AddressLine)));
-
-            RuleFor(m => m.AddressLine)
-               .MaximumLength(ValidationRules.AddressRules.MaxAddressLine)
-               .WithMessage(string.Format(ErrorTypes.Common.MaxLengthError, ValidationRules.AddressRules.MaxAddressLine))
-               .When(m => !string.IsNullOrWhiteSpace(m.AddressLine));
-
-
-            RuleFor(x => x).MustAsync(
-             async (dto, cancellation) =>
-             {
-                 var exit = await addressService.GetByIdAsync(dto.Id);
-                 return exit == null;
-             }
-          ).WithMessage("Wrong address Id");
-        }
-    }
 }

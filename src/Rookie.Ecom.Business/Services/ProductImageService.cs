@@ -23,11 +23,11 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<ProductImageDto> AddAsync(ProductImageDto productImageDto)
+        public async Task<ProductImageInfoDto> AddAsync(ProductImageInfoDto ProductImageInfoDto)
         {
-            var productImage = _mapper.Map<ProductImage>(productImageDto);
+            var productImage = _mapper.Map<ProductImage>(ProductImageInfoDto);
             var item = await _baseRepository.AddAsync(productImage);
-            return _mapper.Map<ProductImageDto>(item);
+            return _mapper.Map<ProductImageInfoDto>(item);
         }
 
         public async Task DeleteAsync(Guid id)
@@ -35,31 +35,31 @@ namespace Rookie.Ecom.Business.Services
             await _baseRepository.DeleteAsync(id);
         }
 
-        public async Task<IEnumerable<ProductImageDto>> GetAllAsync()
+        public async Task<IEnumerable<ProductImageInfoDto>> GetAllAsync()
         {
             var images = await _baseRepository.GetAllAsync();
-            return _mapper.Map<List<ProductImageDto>>(images);
+            return _mapper.Map<List<ProductImageInfoDto>>(images);
         }
 
-        public async Task<ProductImageDto> GetByIdAsync(Guid id)
+        public async Task<ProductImageInfoDto> GetByIdAsync(Guid id)
         {
             var productImage = await _baseRepository.GetByIdAsync(id);
-            return _mapper.Map<ProductImageDto>(productImage);
+            return _mapper.Map<ProductImageInfoDto>(productImage);
         }
 
-        public async Task<ProductImageDto> GetByProductIdAsync(Guid productId)
+        public async Task<ProductImageInfoDto> GetByProductIdAsync(Guid productId)
         {
             throw new NotImplementedException();
         }
 
-       /* public async Task<PagedResponseModel<ProductImageDto>> PagedQueryAsync(string name, int page, int limit)
+       /* public async Task<PagedResponseModel<ProductImageInfoDto>> PagedQueryAsync(string name, int page, int limit)
         {
             throw new NotImplementedException();
         }*/
 
-        public async Task UpdateAsync(ProductImageDto productImageDto)
+        public async Task UpdateAsync(ProductImageInfoDto ProductImageInfoDto)
         {
-            var productImage = _mapper.Map<ProductImage>(productImageDto);
+            var productImage = _mapper.Map<ProductImage>(ProductImageInfoDto);
             await _baseRepository.UpdateAsync(productImage);
         }
     }

@@ -8,18 +8,18 @@ namespace Rookie.Ecom.Business.Interfaces
 {
     public interface IOrderService
     {
-        Task<IEnumerable<OrderDto>> GetAllAsync();
+        Task<IEnumerable<OrderInfoDto>> GetAllAsync();
 
         //Task<PagedResponseModel<OrderDto>> PagedQueryAsync(string name, int page, int limit);
 
-        Task<OrderDto> GetByIdAsync(Guid id);
+        Task<OrderInfoDto> GetByIdAsync(Guid id);
 
-        Task<OrderDto> GetByUserIdAsync(Guid userId);
+        Task<OrderInfoDto> GetByUserIdAsync(Guid userId);
 
-        Task<OrderDto> AddAsync(OrderDto orderDto);
+        Task<OrderInfoDto> AddAsync(OrderInfoDto orderDto);
 
         Task DeleteAsync(Guid id);
 
-        Task UpdateAsync(OrderDto orderDto);
+        Task UpdateAsync(OrderInfoDto orderDto);
     }
 }

@@ -9,22 +9,22 @@ namespace Rookie.Ecom.Business.Interfaces
 {
     public interface IRatingService
     {
-        Task<IEnumerable<RatingDto>> GetAllAsync();
+        Task<IEnumerable<RatingInfoDto>> GetAllAsync();
 
-        Task<PagedResponseModel<RatingDto>> PagedQueryAsync(string name, int page, int limit);
+        Task<PagedResponseModel<RatingInfoDto>> PagedQueryAsync(string name, int page, int limit);
 
-        Task<RatingDto> GetByIdAsync(Guid id);
+        Task<RatingInfoDto> GetByIdAsync(Guid id);
 
-        Task<RatingDto> GetByUserIdAsync(Guid userId);
+        Task<RatingInfoDto> GetByUserIdAsync(Guid userId);
 
-        Task<RatingDto> GetByProductId(Guid productId);
+        Task<RatingInfoDto> GetByProductId(Guid productId);
 
-        Task<RatingDto> GetByStar(int star);
+        Task<RatingInfoDto> GetByStar(int star);
 
-        Task<RatingDto> AddAsync(RatingDto ratingDto);
+        Task<RatingInfoDto> AddAsync(RatingInfoDto ratingDto);
 
         Task DeleteAsync(Guid id);
 
-        Task UpdateAsync(RatingDto ratingDto);
+        Task UpdateAsync(RatingInfoDto ratingDto);
     }
 }

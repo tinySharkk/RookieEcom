@@ -23,11 +23,11 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<RatingDto> AddAsync(RatingDto ratingDto)
+        public async Task<RatingInfoDto> AddAsync(RatingInfoDto RatingInfoDto)
         {
-            var rating = _mapper.Map<Rating>(ratingDto);
+            var rating = _mapper.Map<Rating>(RatingInfoDto);
             var item = await _baseRepository.AddAsync(rating);
-            return _mapper.Map<RatingDto>(item);
+            return _mapper.Map<RatingInfoDto>(item);
         }
 
         public async Task DeleteAsync(Guid id)
@@ -35,41 +35,41 @@ namespace Rookie.Ecom.Business.Services
             await _baseRepository.DeleteAsync(id);
         }
 
-        public async Task<IEnumerable<RatingDto>> GetAllAsync()
+        public async Task<IEnumerable<RatingInfoDto>> GetAllAsync()
         {
             var ratings = await _baseRepository.GetAllAsync();
-            return _mapper.Map<List<RatingDto>>(ratings);
+            return _mapper.Map<List<RatingInfoDto>>(ratings);
         }
 
-        public async Task<RatingDto> GetByIdAsync(Guid id)
+        public async Task<RatingInfoDto> GetByIdAsync(Guid id)
         {
             var rating = await _baseRepository.GetByIdAsync(id);
-            return _mapper.Map<RatingDto>(rating);
+            return _mapper.Map<RatingInfoDto>(rating);
         }
 
-        public async Task<RatingDto> GetByProductId(Guid productId)
+        public async Task<RatingInfoDto> GetByProductId(Guid productId)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<RatingDto> GetByStar(int star)
+        public async Task<RatingInfoDto> GetByStar(int star)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<RatingDto> GetByUserIdAsync(Guid userId)
+        public async Task<RatingInfoDto> GetByUserIdAsync(Guid userId)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<PagedResponseModel<RatingDto>> PagedQueryAsync(string name, int page, int limit)
+        public async Task<PagedResponseModel<RatingInfoDto>> PagedQueryAsync(string name, int page, int limit)
         {
             throw new NotImplementedException();
         }
 
-        public async Task UpdateAsync(RatingDto ratingDto)
+        public async Task UpdateAsync(RatingInfoDto RatingInfoDto)
         {
-            var rating = _mapper.Map<Rating>(ratingDto);
+            var rating = _mapper.Map<Rating>(RatingInfoDto);
             await _baseRepository.UpdateAsync(rating);
         }
     }

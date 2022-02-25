@@ -23,11 +23,11 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<OrderDto> AddAsync(OrderDto orderDto)
+        public async Task<OrderInfoDto> AddAsync(OrderInfoDto OrderInfoDto)
         {
-            var order = _mapper.Map<Order>(orderDto);
+            var order = _mapper.Map<Order>(OrderInfoDto);
             var item = await _baseRepository.AddAsync(order);
-            return _mapper.Map<OrderDto>(item);
+            return _mapper.Map<OrderInfoDto>(item);
         }
 
         public async Task DeleteAsync(Guid id)
@@ -35,24 +35,24 @@ namespace Rookie.Ecom.Business.Services
             await _baseRepository.DeleteAsync(id);
         }
 
-        public async Task<IEnumerable<OrderDto>> GetAllAsync()
+        public async Task<IEnumerable<OrderInfoDto>> GetAllAsync()
         {
             var orders = await _baseRepository.GetAllAsync();
-            return _mapper.Map<List<OrderDto>>(orders);
+            return _mapper.Map<List<OrderInfoDto>>(orders);
         }
 
-        public async Task<OrderDto> GetByIdAsync(Guid id)
+        public async Task<OrderInfoDto> GetByIdAsync(Guid id)
         {
             var order = await _baseRepository.GetByIdAsync(id);
-            return _mapper.Map<OrderDto>(order);
+            return _mapper.Map<OrderInfoDto>(order);
         }
 
-        public async Task<OrderDto> GetByUserIdAsync(Guid userId)
+        public async Task<OrderInfoDto> GetByUserIdAsync(Guid userId)
         {
             throw new NotImplementedException();
         }
 
-      /*  public async Task<PagedResponseModel<OrderDto>> PagedQueryAsync(Guid name, int page, int limit)
+      /*  public async Task<PagedResponseModel<OrderInfoDto>> PagedQueryAsync(Guid name, int page, int limit)
         {
             var query = _baseRepository.Entities;
 
@@ -73,9 +73,9 @@ namespace Rookie.Ecom.Business.Services
             };
         }*/
 
-        public async Task UpdateAsync(OrderDto orderDto)
+        public async Task UpdateAsync(OrderInfoDto OrderInfoDto)
         {
-            var order = _mapper.Map<Order>(orderDto);
+            var order = _mapper.Map<Order>(OrderInfoDto);
             await _baseRepository.UpdateAsync(order);
         }
     }

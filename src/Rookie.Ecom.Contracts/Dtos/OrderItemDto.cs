@@ -20,4 +20,16 @@ namespace Rookie.Ecom.Contracts.Dtos
 
         public ProductDto Product { get; set; }
     }
+
+    public class OrderItemInfoDto : BaseDto
+    {
+        public Guid? OrderId { get; set; }
+
+        public Guid? ProductId { get; set; }
+
+        public int Price { get; set; }
+
+        public int Quantity { get; set; }
+
+    }
 }

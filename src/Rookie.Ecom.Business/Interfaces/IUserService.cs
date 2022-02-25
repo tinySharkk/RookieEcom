@@ -8,24 +8,24 @@ namespace Rookie.Ecom.Business.Interfaces
 {
     public interface IUserService
     {
-        Task<IEnumerable<UserDto>> GetAllAsync();
+        Task<IEnumerable<UserInfoDto>> GetAllAsync();
 
-        Task<PagedResponseModel<UserDto>> PagedQueryAsync(string name, int page, int limit);
+        Task<PagedResponseModel<UserInfoDto>> PagedQueryAsync(string name, int page, int limit);
 
-        Task<UserDto> GetByIdAsync(Guid id);
+        Task<UserInfoDto> GetByIdAsync(Guid id);
 
-        Task<UserDto> GetByNameAsync(string name);
+        Task<UserInfoDto> GetByNameAsync(string name);
 
-        Task<UserDto> GetByEmailAsync(string email);
+        Task<UserInfoDto> GetByEmailAsync(string email);
 
-        Task<UserDto> GetByPhoneNumber (int phoneNumber);
+        Task<UserInfoDto> GetByPhoneNumber (int phoneNumber);
 
-        Task<UserDto> GetByRole(string role);
+        Task<UserInfoDto> GetByRole(string role);
 
-        Task<UserCreateDto> AddAsync(UserCreateDto addressDto);
+        Task<UserInfoDto> AddAsync(UserInfoDto addressDto);
 
         Task DeleteAsync(Guid id);
 
-        Task UpdateAsync(UserDto userDto);
+        Task UpdateAsync(UserInfoDto userDto);
     }
 }

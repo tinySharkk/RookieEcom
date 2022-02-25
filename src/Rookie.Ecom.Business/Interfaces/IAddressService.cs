@@ -19,10 +19,10 @@ namespace Rookie.Ecom.Business.Interfaces
         Task<AddressDto> GetByUserId(Guid userId);
 
 
-        Task<AddressCreateDto> AddAsync(AddressCreateDto addressDto);
+        Task<AddressInfoDto> AddAsync(AddressInfoDto addressDto);
 
         Task DeleteAsync(Guid id);
 
-        Task UpdateAsync(AddressUpdateDto addressDto);
+        Task UpdateAsync(AddressInfoDto addressDto);
     }
 }

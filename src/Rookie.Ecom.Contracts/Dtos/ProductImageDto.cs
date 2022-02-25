@@ -12,4 +12,14 @@ namespace Rookie.Ecom.Contracts.Dtos
 
         public ProductDto Product { get; set; }
     }
+
+    public class ProductImageInfoDto : BaseDto
+    {
+        public string PictureUrl { get; set; }
+
+        public string Title { get; set; }
+
+        public Guid? ProductId { get; set; }
+
+    }
 }

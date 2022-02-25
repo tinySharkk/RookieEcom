@@ -23,11 +23,11 @@ namespace Rookie.Ecom.Business.Services
             _baseRepository = baseRepository;
             _mapper = mapper;
         }
-        public async Task<OrderItemDto> AddAsync(OrderItemDto orderItemDto)
+        public async Task<OrderItemInfoDto> AddAsync(OrderItemInfoDto orderItemDto)
         {
             var orderItem = _mapper.Map<OrderItem>(orderItemDto);
             var item = await _baseRepository.AddAsync(orderItem);
-            return _mapper.Map<OrderItemDto>(item);
+            return _mapper.Map<OrderItemInfoDto>(item);
         }
 
         public async Task DeleteAsync(Guid id)
@@ -35,28 +35,28 @@ namespace Rookie.Ecom.Business.Services
             await _baseRepository.DeleteAsync(id);
         }
 
-        public async Task<IEnumerable<OrderItemDto>> GetAllAsync()
+        public async Task<IEnumerable<OrderItemInfoDto>> GetAllAsync()
         {
             var orderItems = await _baseRepository.GetAllAsync();
-            return _mapper.Map<List<OrderItemDto>>(orderItems);
+            return _mapper.Map<List<OrderItemInfoDto>>(orderItems);
         }
 
-        public async Task<OrderItemDto> GetByIdAsync(Guid id)
+        public async Task<OrderItemInfoDto> GetByIdAsync(Guid id)
         {
             var orderItem = await _baseRepository.GetByIdAsync(id);
-            return _mapper.Map<OrderItemDto>(orderItem);
+            return _mapper.Map<OrderItemInfoDto>(orderItem);
         }
 
-        public async Task<OrderItemDto> GetByOrderIdAsync(Guid orderId)
+        public async Task<OrderItemInfoDto> GetByOrderIdAsync(Guid orderId)
         {
             throw new NotImplementedException();
         }
 
-     /*   public async Task<PagedResponseModel<OrderItemDto>> PagedQueryAsync(string name, int page, int limit)
+        /*public async Task<PagedResponseModel<OrderItemInfoDto>> PagedQueryAsync(string name, int page, int limit)
         {
             var query = _baseRepository.Entities;
 
-            query = query.Where(x => string.IsNullOrEmpty(name) || x.OrderId.Contains(name));
+            query = query.Where(x => string.IsNullOrEmpty(name) || x..Contains(name));
 
             query = query.OrderBy(x => x.Name);
 
@@ -73,7 +73,7 @@ namespace Rookie.Ecom.Business.Services
             };
         }*/
 
-        public async Task UpdateAsync(OrderItemDto orderItemDto)
+        public async Task UpdateAsync(OrderItemInfoDto orderItemDto)
         {
             var orderItem = _mapper.Map<OrderItem>(orderItemDto);
             await _baseRepository.UpdateAsync(orderItem);

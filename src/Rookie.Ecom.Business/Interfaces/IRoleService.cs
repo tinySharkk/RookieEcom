@@ -8,18 +8,18 @@ namespace Rookie.Ecom.Business.Interfaces
 {
     public interface IRoleService
     {
-        Task<IEnumerable<RoleDto>> GetAllAsync();
+        Task<IEnumerable<RoleInfoDto>> GetAllAsync();
 
-        Task<PagedResponseModel<RoleDto>> PagedQueryAsync(string name, int page, int limit);
+        Task<PagedResponseModel<RoleInfoDto>> PagedQueryAsync(string name, int page, int limit);
 
-        Task<RoleDto> GetByIdAsync(Guid id);
+        Task<RoleInfoDto> GetByIdAsync(Guid id);
 
-        Task<RoleDto> GetByNameAsync(string name);
+        Task<RoleInfoDto> GetByNameAsync(string name);
 
-        Task<RoleDto> AddAsync(RoleDto roleDto);
+        Task<RoleInfoDto> AddAsync(RoleInfoDto roleDto);
 
         Task DeleteAsync(Guid id);
 
-        Task UpdateAsync(RoleDto roleDto);
+        Task UpdateAsync(RoleInfoDto roleDto);
     }
 }

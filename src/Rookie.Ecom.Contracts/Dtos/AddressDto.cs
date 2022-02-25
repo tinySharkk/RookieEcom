@@ -18,17 +18,7 @@ namespace Rookie.Ecom.Contracts.Dtos
 
         public UserDto User { get; set; }
     }
-    public class AddressCreateDto : BaseDto
-    {
-        public Guid? UserId { get; set; }
-
-        public string AddressLine { get; set; }
-
-        public Guid? CityId { get; set; }
-
-    }
-
-    public class AddressUpdateDto : BaseDto
+    public class AddressInfoDto : BaseDto
     {
         public Guid? UserId { get; set; }
 

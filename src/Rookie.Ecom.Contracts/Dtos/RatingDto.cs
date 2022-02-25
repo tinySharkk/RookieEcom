@@ -9,6 +9,7 @@ namespace Rookie.Ecom.Contracts.Dtos
     public class RatingDto : BaseDto
     {
         public Guid? UserId { get; set; }
+
         public Guid? ProductId { get; set; }
 
         public float Star { get; set; }
@@ -18,5 +19,16 @@ namespace Rookie.Ecom.Contracts.Dtos
         public ProductDto Product { get; set; }
 
         public UserDto User { get; set; }
+    }
+
+    public class RatingInfoDto : BaseDto
+    {
+        public Guid? UserId { get; set; }
+
+        public Guid? ProductId { get; set; }
+
+        public float Star { get; set; }
+
+        public string Feedback { get; set; }
     }
 }

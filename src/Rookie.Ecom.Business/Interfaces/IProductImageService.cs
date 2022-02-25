@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace Rookie.Ecom.Business.Interfaces
 {
-    internal interface IProductImageService
+    public interface IProductImageService
     {
-        Task<IEnumerable<ProductImageDto>> GetAllAsync();
+        Task<IEnumerable<ProductImageInfoDto>> GetAllAsync();
 
         //Task<PagedResponseModel<ProductImageDto>> PagedQueryAsync(string name, int page, int limit);
 
-        Task<ProductImageDto> GetByIdAsync(Guid id);
+        Task<ProductImageInfoDto> GetByIdAsync(Guid id);
 
-        Task<ProductImageDto> GetByProductIdAsync(Guid productId);
+        Task<ProductImageInfoDto> GetByProductIdAsync(Guid productId);
 
-        Task<ProductImageDto> AddAsync(ProductImageDto productImageDto);
+        Task<ProductImageInfoDto> AddAsync(ProductImageInfoDto productImageDto);
 
         Task DeleteAsync(Guid id);
 
-        Task UpdateAsync(ProductImageDto productImageDto);
+        Task UpdateAsync(ProductImageInfoDto productImageDto);
     }
 }

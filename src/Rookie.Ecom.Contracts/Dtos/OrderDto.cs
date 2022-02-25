@@ -20,6 +20,18 @@ namespace Rookie.Ecom.Contracts.Dtos
 
         public UserDto User { get; set; }
     }
+
+    public class OrderInfoDto : BaseDto
+    {
+        public Guid UserId { get; set; }
+
+        public Guid ProductId { get; set; }
+
+        public Guid? ShippingAdressId { get; set; }
+
+        public OrderStatus Status { get; set; }
+
+    }
 }
 
 public enum OrderStatus

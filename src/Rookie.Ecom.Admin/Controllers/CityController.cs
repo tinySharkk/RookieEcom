@@ -27,7 +27,7 @@ namespace Rookie.Ecom.Admin.Controllers
             return Created(Endpoints.City, asset);
         }
 
-         [HttpPut]
+        [HttpPut]
         public async Task<ActionResult> UpdateAsync([FromBody] CityDto cityDto)
         {
             Ensure.Any.IsNotNull(cityDto, nameof(cityDto));

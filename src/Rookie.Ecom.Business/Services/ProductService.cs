@@ -23,11 +23,11 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<ProductDto> AddAsync(ProductDto productDto)
+        public async Task<ProductInfoDto> AddAsync(ProductInfoDto ProductInfoDto)
         {
-            var product = _mapper.Map<Product>(productDto);
+            var product = _mapper.Map<Product>(ProductInfoDto);
             var item = await _baseRepository.AddAsync(product);
-            return _mapper.Map<ProductDto>(item);
+            return _mapper.Map<ProductInfoDto>(item);
         }
 
         public async Task DeleteAsync(Guid id)
@@ -35,29 +35,29 @@ namespace Rookie.Ecom.Business.Services
             await _baseRepository.DeleteAsync(id);
         }
 
-        public async Task<IEnumerable<ProductDto>> GetAllAsync()
+        public async Task<IEnumerable<ProductInfoDto>> GetAllAsync()
         {
             var products = await _baseRepository.GetAllAsync();
-            return _mapper.Map<List<ProductDto>>(products);
+            return _mapper.Map<List<ProductInfoDto>>(products);
         }
 
-        public async Task<ProductDto> GetByCategory(Guid categoryId)
+        public async Task<ProductInfoDto> GetByCategory(Guid categoryId)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<ProductDto> GetByIdAsync(Guid id)
+        public async Task<ProductInfoDto> GetByIdAsync(Guid id)
         {
             var product = await _baseRepository.GetByIdAsync(id);
-            return _mapper.Map<ProductDto>(product);
+            return _mapper.Map<ProductInfoDto>(product);
         }
 
-        public async Task<ProductDto> GetByNameAsync(string name)
+        public async Task<ProductInfoDto> GetByNameAsync(string name)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<PagedResponseModel<ProductDto>> PagedQueryAsync(string name, int page, int limit)
+        public async Task<PagedResponseModel<ProductInfoDto>> PagedQueryAsync(string name, int page, int limit)
         {
             var query = _baseRepository.Entities;
 
@@ -69,18 +69,18 @@ namespace Rookie.Ecom.Business.Services
                 .AsNoTracking()
                 .PaginateAsync(page, limit);
 
-            return new PagedResponseModel<ProductDto>
+            return new PagedResponseModel<ProductInfoDto>
             {
                 CurrentPage = assets.CurrentPage,
                 TotalPages = assets.TotalPages,
                 TotalItems = assets.TotalItems,
-                Items = _mapper.Map<IEnumerable<ProductDto>>(assets.Items)
+                Items = _mapper.Map<IEnumerable<ProductInfoDto>>(assets.Items)
             };
         }
 
-        public async Task UpdateAsync(ProductDto productDto)
+        public async Task UpdateAsync(ProductInfoDto ProductInfoDto)
         {
-            var product = _mapper.Map<Product>(productDto);
+            var product = _mapper.Map<Product>(ProductInfoDto);
             await _baseRepository.UpdateAsync(product);
         }
     }

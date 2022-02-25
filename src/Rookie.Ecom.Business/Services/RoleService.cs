@@ -23,11 +23,11 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<RoleDto> AddAsync(RoleDto roleDto)
+        public async Task<RoleInfoDto> AddAsync(RoleInfoDto RoleInfoDto)
         {
-            var role = _mapper.Map<Role>(roleDto);
+            var role = _mapper.Map<Role>(RoleInfoDto);
             var item = await _baseRepository.AddAsync(role);
-            return _mapper.Map<RoleDto>(item);
+            return _mapper.Map<RoleInfoDto>(item);
         }
 
         public async Task DeleteAsync(Guid id)
@@ -35,31 +35,31 @@ namespace Rookie.Ecom.Business.Services
             await _baseRepository.DeleteAsync(id);
         }
 
-        public async Task<IEnumerable<RoleDto>> GetAllAsync()
+        public async Task<IEnumerable<RoleInfoDto>> GetAllAsync()
         {
             var roles = await _baseRepository.GetAllAsync();
-            return _mapper.Map<List<RoleDto>>(roles);
+            return _mapper.Map<List<RoleInfoDto>>(roles);
         }
 
-        public async Task<RoleDto> GetByIdAsync(Guid id)
+        public async Task<RoleInfoDto> GetByIdAsync(Guid id)
         {
             var role = await _baseRepository.GetByIdAsync(id);
-            return _mapper.Map<RoleDto>(role);
+            return _mapper.Map<RoleInfoDto>(role);
         }
 
-        public async Task<RoleDto> GetByNameAsync(string name)
+        public async Task<RoleInfoDto> GetByNameAsync(string name)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<PagedResponseModel<RoleDto>> PagedQueryAsync(string name, int page, int limit)
+        public async Task<PagedResponseModel<RoleInfoDto>> PagedQueryAsync(string name, int page, int limit)
         {
             throw new NotImplementedException();
         }
 
-        public async Task UpdateAsync(RoleDto roleDto)
+        public async Task UpdateAsync(RoleInfoDto RoleInfoDto)
         {
-            var role = _mapper.Map<Role>(roleDto);
+            var role = _mapper.Map<Role>(RoleInfoDto);
             await _baseRepository.UpdateAsync(role);
         }
     }

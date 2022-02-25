@@ -21,7 +21,7 @@ namespace Rookie.Ecom.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<AddressCreateDto>> CreateAsync([FromBody] AddressCreateDto addressDto)
+        public async Task<ActionResult<AddressInfoDto>> CreateAsync([FromBody] AddressInfoDto addressDto)
         {
             Ensure.Any.IsNotNull(addressDto, nameof(addressDto));
             var asset = await _AddressService.AddAsync(addressDto);
@@ -29,7 +29,7 @@ namespace Rookie.Ecom.Admin.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateAsync([FromBody] AddressUpdateDto AddressDto)
+        public async Task<ActionResult> UpdateAsync([FromBody] AddressInfoDto AddressDto)
         {
             Ensure.Any.IsNotNull(AddressDto, nameof(AddressDto));
             await _AddressService.UpdateAsync(AddressDto);

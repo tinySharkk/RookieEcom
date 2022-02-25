@@ -23,11 +23,11 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<UserAccountDto> AddAsync(UserAccountDto userAccountDto)
+        public async Task<UserAccountInfoDto> AddAsync(UserAccountInfoDto UserAccountInfoDto)
         {
-            var userAccount = _mapper.Map<UserAccount>(userAccountDto);
+            var userAccount = _mapper.Map<UserAccount>(UserAccountInfoDto);
             var item = await _baseRepository.AddAsync(userAccount);
-            return _mapper.Map<UserAccountDto>(item);
+            return _mapper.Map<UserAccountInfoDto>(item);
         }
 
         public async Task DeleteAsync(Guid id)
@@ -35,25 +35,31 @@ namespace Rookie.Ecom.Business.Services
             await _baseRepository.DeleteAsync(id);
         }
 
-        public async Task<IEnumerable<UserAccountDto>> GetAllAsync()
+        public async Task<IEnumerable<UserAccountInfoDto>> GetAllAsync()
         {
             var userAccounts = await _baseRepository.GetAllAsync();
-            return _mapper.Map<List<UserAccountDto>>(userAccounts);
+            return _mapper.Map<List<UserAccountInfoDto>>(userAccounts);
         }
 
-        public async Task<UserAccountDto> GetByUserNameAsync(string userName)
+        public async Task<UserAccountInfoDto> GetByIdAsync(Guid id)
+        {
+            var user = await _baseRepository.GetByIdAsync(id);
+            return _mapper.Map<UserAccountInfoDto>(user);
+        }
+
+        public async Task<UserAccountInfoDto> GetByUserNameAsync(string userName)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<PagedResponseModel<UserAccountDto>> PagedQueryAsync(string name, int page, int limit)
+        public async Task<PagedResponseModel<UserAccountInfoDto>> PagedQueryAsync(string name, int page, int limit)
         {
             throw new NotImplementedException();
         }
 
-        public async Task UpdateAsync(UserAccountDto userAccountDto)
+        public async Task UpdateAsync(UserAccountInfoDto UserAccountInfoDto)
         {
-            var userAccount = _mapper.Map<UserAccount>(userAccountDto);
+            var userAccount = _mapper.Map<UserAccount>(UserAccountInfoDto);
             await _baseRepository.UpdateAsync(userAccount);
         }
     }

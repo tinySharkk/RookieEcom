@@ -21,7 +21,7 @@ namespace Rookie.Ecom.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<UserDto>> CreateAsync([FromBody] UserCreateDto userDto)
+        public async Task<ActionResult<UserDto>> CreateAsync([FromBody] UserInfoDto userDto)
         {
             Ensure.Any.IsNotNull(userDto, nameof(userDto));
             var asset = await _userService.AddAsync(userDto);
@@ -29,7 +29,7 @@ namespace Rookie.Ecom.Admin.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateAsync([FromBody] UserDto userDto)
+        public async Task<ActionResult> UpdateAsync([FromBody] UserInfoDto userDto)
         {
             Ensure.Any.IsNotNull(userDto, nameof(userDto));
             await _userService.UpdateAsync(userDto);
@@ -47,13 +47,13 @@ namespace Rookie.Ecom.Admin.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<UserDto> GetByIdAsync(Guid id)
+        public async Task<UserInfoDto> GetByIdAsync(Guid id)
         { 
             return await _userService.GetByIdAsync(id);
         }
 
         [HttpGet]
-        public async Task<IEnumerable<UserDto>> GetAsync()
+        public async Task<IEnumerable<UserInfoDto>> GetAsync()
         { 
             return await _userService.GetAllAsync();
         }
