@@ -18,7 +18,7 @@ namespace Rookie.Ecom.Business.Interfaces
 
         Task<UserInfoDto> GetByEmailAsync(string email);
 
-        Task<UserInfoDto> GetByPhoneNumber (int phoneNumber);
+        Task<UserInfoDto> GetByPhoneNumber (string phoneNumber);
 
         Task<UserInfoDto> GetByRole(string role);
 

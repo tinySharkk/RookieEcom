@@ -16,11 +16,13 @@ namespace Rookie.Ecom.Contracts.Dtos
 
         public string Email { get; set; }
 
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         public ICollection<RoleDto> Roles { get; set; }
 
         public ICollection<OrderDto> Orders { get; set; }
+
+        public ICollection<CartDto> Carts { get; set; }
     }
     public class UserInfoDto : BaseDto
     {
@@ -32,7 +34,7 @@ namespace Rookie.Ecom.Contracts.Dtos
 
         public string Email { get; set; }
 
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
     }
 }

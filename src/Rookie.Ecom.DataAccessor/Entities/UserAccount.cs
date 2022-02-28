@@ -10,6 +10,7 @@ namespace Rookie.Ecom.DataAccessor.Entities
     public class UserAccount : BaseEntity
     {
         [Required]
+        [StringLength(maximumLength:50)]
         public string UserName { get; set; }
 
         [Required]

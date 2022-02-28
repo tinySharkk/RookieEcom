@@ -59,7 +59,7 @@ namespace Rookie.Ecom.Business.Services
             return _mapper.Map<UserInfoDto>(user);
         }
 
-        public async Task<UserInfoDto> GetByPhoneNumber(int phoneNumber)
+        public async Task<UserInfoDto> GetByPhoneNumber(string phoneNumber)
         {
             var user = await _baseRepository.GetByAsync(x => x.PhoneNumber == phoneNumber);
             return _mapper.Map<UserInfoDto>(user);

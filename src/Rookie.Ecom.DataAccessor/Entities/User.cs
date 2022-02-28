@@ -20,15 +20,18 @@ namespace Rookie.Ecom.DataAccessor.Entities
         [Required]
         public UserGender Gender { get; set; }
 
+        [StringLength(maximumLength:50)]
         public string Email { get; set; }
 
         [StringLength(maximumLength:10, MinimumLength =10, ErrorMessage = "Phone number must have 10 character")]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         public ICollection<Role> Roles { get; set; }
 
         public ICollection<Order> Orders { get; set; }
-        
+
+        public ICollection<Cart> Carts { get; set; }
+
         public UserAccount UserAccount { get; set; }
 
     }

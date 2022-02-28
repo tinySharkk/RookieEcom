@@ -17,7 +17,7 @@ namespace Rookie.Ecom.Contracts.Dtos
 
         public Guid? CategoryId { get; set; }
 
-        public CategoryDto Category { get; set; }
+        public ICollection<CategoryDto> Category { get; set; }
 
         public ICollection<ProductImageDto> ProductImages { get; set; }
     }

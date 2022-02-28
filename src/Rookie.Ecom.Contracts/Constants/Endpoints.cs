@@ -12,6 +12,7 @@ namespace Rookie.Ecom.Contracts.Constants
         public const string City = "api/city";
         public const string User = "api/user"; 
         public const string Address = "api/address";
-        public const string UserAccount = "api/userAccount";
+        public const string UserAccount = "api/useraccount";
+        public const string Cart = "api/cart";
     }
 }

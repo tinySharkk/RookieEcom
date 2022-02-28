@@ -10,6 +10,7 @@ namespace Rookie.Ecom.DataAccessor.Entities
     public class City :BaseEntity
     {
         [Required]
+        [StringLength(maximumLength: 50)]
         public string Name { get; set; }
     }
 }

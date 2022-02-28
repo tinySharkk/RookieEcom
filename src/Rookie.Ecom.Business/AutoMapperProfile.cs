@@ -19,6 +19,13 @@ namespace Rookie.Ecom.Business
             CreateMap<AddressInfoDto, Address>();
 
 
+            //Cart
+            CreateMap<CartDto, Cart>();
+            CreateMap<CartInfoDto, Cart>()
+                .ForMember(d => d.Product, t => t.Ignore())
+                .ForMember(d => d.User, t => t.Ignore());
+
+
             //Category
             CreateMap<CategoryDto, Category>()
                .ForMember(d => d.Products, t => t.Ignore());
@@ -87,6 +94,11 @@ namespace Rookie.Ecom.Business
             //Address
             CreateMap<Address, AddressInfoDto>();
             CreateMap<Address, AddressDto>();
+
+
+            //Cart
+            CreateMap<Cart, CartDto>();
+            CreateMap<Cart, CartInfoDto>();
 
 
             //Category

@@ -18,6 +18,7 @@ namespace Rookie.Ecom.DataAccessor.Entities
         [Required]
         public Guid? ShippingAdressId { get; set; }
 
+        [Required]
         public OrderStatus Status { get; set; }
 
         public ICollection<OrderItem> orderItems { get; set; }

@@ -16,6 +16,7 @@ namespace Rookie.Ecom.DataAccessor.Entities
         public Guid? ProductId { get; set; }
 
         [Required]
+        [Range(0, 5, ErrorMessage = "Star must between {1} and {2}.")]
         public float Star { get; set; }
 
         public string Feedback  { get; set; }

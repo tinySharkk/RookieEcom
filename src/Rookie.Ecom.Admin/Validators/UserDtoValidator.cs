@@ -2,6 +2,7 @@
 using Rookie.Ecom.Business.Interfaces;
 using Rookie.Ecom.Contracts.Constants;
 using Rookie.Ecom.Contracts.Dtos;
+using System.Text.RegularExpressions;
 
 
 namespace Rookie.Ecom.Admin.Validators
@@ -48,6 +49,8 @@ namespace Rookie.Ecom.Admin.Validators
     {
         public UserInfoDtoValidator(IUserService userService)
         {
+            Regex rxIsOnlyNumber = new Regex(@"^[0-9]*$");
+
             RuleFor(m => m.Id)
                 .NotNull()
                 .WithMessage(x => string.Format(ErrorTypes.Common.RequiredError, nameof(x.Id)));
@@ -72,6 +75,7 @@ namespace Rookie.Ecom.Admin.Validators
                 .NotNull().
                 WithMessage(x => string.Format(ErrorTypes.Common.RequiredError, nameof(x.Gender)));
 
+            RuleFor(m => m.PhoneNumber).Matches("^[0-9]*$");
 
             /*            RuleFor(x => x).MustAsync(
                          async (dto, cancellation) =>
