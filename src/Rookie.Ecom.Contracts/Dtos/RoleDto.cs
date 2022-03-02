@@ -18,4 +18,10 @@ namespace Rookie.Ecom.Contracts.Dtos
         public string RoleName { get; set; }
 
     }
+
+    public class UpdateRoleDto 
+    {
+        public string RoleName { get; set; }
+
+    }
 }

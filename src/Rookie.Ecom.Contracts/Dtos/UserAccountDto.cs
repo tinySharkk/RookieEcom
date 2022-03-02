@@ -28,4 +28,10 @@ namespace Rookie.Ecom.Contracts.Dtos
 
     }
 
+    public class UpdateUserAccountDto
+    {
+        public string Password { get; set; }
+
+    }
+
 }

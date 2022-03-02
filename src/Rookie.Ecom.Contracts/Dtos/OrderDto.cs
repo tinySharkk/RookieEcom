@@ -32,6 +32,11 @@ namespace Rookie.Ecom.Contracts.Dtos
         public OrderStatus Status { get; set; }
 
     }
+
+    public class UpdateOrderDto
+    {
+        public OrderStatus Status { get; set; }
+    }
 }
 
 public enum OrderStatus

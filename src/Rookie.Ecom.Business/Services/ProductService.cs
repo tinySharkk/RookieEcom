@@ -23,9 +23,9 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<ProductInfoDto> AddAsync(ProductInfoDto ProductInfoDto)
+        public async Task<ProductInfoDto> AddAsync(ProductInfoDto productInfoDto)
         {
-            var product = _mapper.Map<Product>(ProductInfoDto);
+            var product = _mapper.Map<Product>(productInfoDto);
             var item = await _baseRepository.AddAsync(product);
             return _mapper.Map<ProductInfoDto>(item);
         }
@@ -82,6 +82,17 @@ namespace Rookie.Ecom.Business.Services
         {
             var product = _mapper.Map<Product>(ProductInfoDto);
             await _baseRepository.UpdateAsync(product);
+        }
+
+        public async Task UpdateByIdAsync(Guid id, UpdateProductDto updateProductDto)
+        {
+            var product = await _baseRepository.GetByIdAsync(id);
+
+            _mapper.Map(updateProductDto, product);
+            product.UpdatedDate = DateTime.Now;
+
+            await _baseRepository.UpdateAsync(product);
+
         }
     }
 }

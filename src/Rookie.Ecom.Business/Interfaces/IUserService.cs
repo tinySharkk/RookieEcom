@@ -22,10 +22,12 @@ namespace Rookie.Ecom.Business.Interfaces
 
         Task<UserInfoDto> GetByRole(string role);
 
-        Task<UserInfoDto> AddAsync(UserInfoDto addressDto);
+        Task<UserInfoDto> AddAsync(UserInfoDto addAddressDto);
 
         Task DeleteAsync(Guid id);
 
         Task UpdateAsync(UserInfoDto userDto);
+
+        Task UpdateByIdAsync(Guid id, UpdateUserDto updateUserDto);
     }
 }

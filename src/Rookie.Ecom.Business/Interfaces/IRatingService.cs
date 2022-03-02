@@ -26,5 +26,7 @@ namespace Rookie.Ecom.Business.Interfaces
         Task DeleteAsync(Guid id);
 
         Task UpdateAsync(RatingInfoDto ratingDto);
+
+        Task UpdateByIdAsync(Guid id, UpdateRatingDto updateRatingDto);
     }
 }

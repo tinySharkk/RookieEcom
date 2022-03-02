@@ -37,6 +37,15 @@ namespace Rookie.Ecom.Admin.Controllers
             return NoContent();
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateByIdAsync(Guid id,[FromBody] UpdateUserDto userDto)
+        {
+            Ensure.Any.IsNotNull(userDto, nameof(userDto));
+            await _userService.UpdateByIdAsync(id, userDto);
+
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAssetAsync([FromRoute] Guid id)
         {

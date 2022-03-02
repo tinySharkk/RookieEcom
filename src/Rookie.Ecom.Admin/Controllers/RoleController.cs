@@ -13,25 +13,25 @@ namespace Rookie.Ecom.Admin.Controllers
     [Route("api/[controller]")]
     public class RoleController : Controller
     {
-        private readonly IRoleService _RoleService;
-        public RoleController(IRoleService cityService)
+        private readonly IRoleService _roleService;
+        public RoleController(IRoleService roleService)
         {
-            _RoleService = cityService;
+            _roleService = roleService;
         }
 
         [HttpPost]
-        public async Task<ActionResult<RoleInfoDto>> CreateAsync([FromBody] RoleInfoDto RoleInfoDto)
+        public async Task<ActionResult<RoleInfoDto>> CreateAsync([FromBody] RoleInfoDto roleInfoDto)
         {
-            Ensure.Any.IsNotNull(RoleInfoDto, nameof(RoleInfoDto));
-            var asset = await _RoleService.AddAsync(RoleInfoDto);
+            Ensure.Any.IsNotNull(roleInfoDto, nameof(roleInfoDto));
+            var asset = await _roleService.AddAsync(roleInfoDto);
             return Created(Endpoints.Role, asset);
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateAsync([FromBody] RoleInfoDto RoleInfoDto)
+        public async Task<ActionResult> UpdateAsync([FromBody] RoleInfoDto roleInfoDto)
         {
-            Ensure.Any.IsNotNull(RoleInfoDto, nameof(RoleInfoDto));
-            await _RoleService.UpdateAsync(RoleInfoDto);
+            Ensure.Any.IsNotNull(roleInfoDto, nameof(roleInfoDto));
+            await _roleService.UpdateAsync(roleInfoDto);
 
             return NoContent();
         }
@@ -39,23 +39,23 @@ namespace Rookie.Ecom.Admin.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAssetAsync([FromRoute] Guid id)
         {
-            var RoleInfoDto = await _RoleService.GetByIdAsync(id);
+            var RoleInfoDto = await _roleService.GetByIdAsync(id);
             Ensure.Any.IsNotNull(RoleInfoDto, nameof(RoleInfoDto));
-            await _RoleService.DeleteAsync(id);
+            await _roleService.DeleteAsync(id);
             return NoContent();
         }
 
         [HttpGet("{id}")]
         public async Task<RoleInfoDto> GetByIdAsync(Guid id)
-            => await _RoleService.GetByIdAsync(id);
+            => await _roleService.GetByIdAsync(id);
 
         [HttpGet]
         public async Task<IEnumerable<RoleInfoDto>> GetAsync()
-            => await _RoleService.GetAllAsync();
+            => await _roleService.GetAllAsync();
 
         [HttpGet("find")]
         public async Task<PagedResponseModel<RoleInfoDto>>
             FindAsync(string name, int page = 1, int limit = 10)
-            => await _RoleService.PagedQueryAsync(name, page, limit);
+            => await _roleService.PagedQueryAsync(name, page, limit);
     }
 }

@@ -87,5 +87,15 @@ namespace Rookie.Ecom.Business.Services
             };
         }
 
+        public async Task UpdateByIdAsync(Guid id, UpdateCityDto updateCityDto)
+        {
+            var city = await _baseRepository.GetByIdAsync(id);
+
+            _mapper.Map(updateCityDto, city);
+            city.UpdatedDate = DateTime.Now;
+
+            await _baseRepository.UpdateAsync(city);
+        }
+
     }
 }

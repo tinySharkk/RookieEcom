@@ -96,5 +96,15 @@ namespace Rookie.Ecom.Business.Services
             var user = _mapper.Map<User>(userDto);
             await _baseRepository.UpdateAsync(user);
         }
+
+        public async Task UpdateByIdAsync(Guid id, UpdateUserDto updateUserDto)
+        {
+            var user = await _baseRepository.GetByIdAsync(id);
+
+            _mapper.Map(updateUserDto, user);
+            user.UpdatedDate = DateTime.Now;
+
+            await _baseRepository.UpdateAsync(user);
+        }
     }
 }

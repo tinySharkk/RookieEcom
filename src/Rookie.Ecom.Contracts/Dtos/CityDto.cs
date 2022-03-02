@@ -10,4 +10,9 @@ namespace Rookie.Ecom.Contracts.Dtos
     {
         public string Name { get; set; }
     }
+
+    public class UpdateCityDto
+    {
+        public string Name { get; set; }
+    }
 }

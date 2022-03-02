@@ -23,9 +23,9 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<OrderInfoDto> AddAsync(OrderInfoDto OrderInfoDto)
+        public async Task<OrderInfoDto> AddAsync(OrderInfoDto orderInfoDto)
         {
-            var order = _mapper.Map<Order>(OrderInfoDto);
+            var order = _mapper.Map<Order>(orderInfoDto);
             var item = await _baseRepository.AddAsync(order);
             return _mapper.Map<OrderInfoDto>(item);
         }
@@ -73,10 +73,21 @@ namespace Rookie.Ecom.Business.Services
             };
         }*/
 
-        public async Task UpdateAsync(OrderInfoDto OrderInfoDto)
+        public async Task UpdateAsync(OrderInfoDto orderInfoDto)
         {
-            var order = _mapper.Map<Order>(OrderInfoDto);
+            var order = _mapper.Map<Order>(orderInfoDto);
             await _baseRepository.UpdateAsync(order);
         }
+
+        public async Task UpdateByIdAsync(Guid id, UpdateOrderDto updateOrderDto)
+        {
+            var order = await _baseRepository.GetByIdAsync(id);
+
+            _mapper.Map(updateOrderDto, order);
+            order.UpdatedDate = DateTime.Now;
+
+            await _baseRepository.UpdateAsync(order);
+        }
+
     }
 }

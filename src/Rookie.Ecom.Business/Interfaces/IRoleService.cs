@@ -21,5 +21,7 @@ namespace Rookie.Ecom.Business.Interfaces
         Task DeleteAsync(Guid id);
 
         Task UpdateAsync(RoleInfoDto roleDto);
+
+        Task UpdateByIdAsync(Guid id, UpdateRoleDto updateRoleDto);
     }
 }

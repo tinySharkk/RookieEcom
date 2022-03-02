@@ -27,4 +27,19 @@ namespace Rookie.Ecom.Contracts.Dtos
         public Guid? CityId { get; set; }
 
     }
+
+    public class AddAddressDto: BaseDto
+    {
+        public Guid? UserId { get; set; }
+
+        public string AddressLine { get; set; }
+
+        public Guid? CityId { get; set; }
+    }
+
+    public class UpdateAddressDto
+    {
+        public string AddressLine { get; set; }
+
+    }
 }

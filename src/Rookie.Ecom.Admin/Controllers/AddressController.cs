@@ -14,25 +14,34 @@ namespace Rookie.Ecom.Admin.Controllers
     [Route("api/[controller]")]
     public class AddressController : Controller
     {
-        private readonly IAddressService _AddressService;
-        public AddressController(IAddressService AddressService)
+        private readonly IAddressService _addressService;
+        public AddressController(IAddressService addressService)
         {
-            _AddressService = AddressService;
+            _addressService = addressService;
         }
 
         [HttpPost]
-        public async Task<ActionResult<AddressInfoDto>> CreateAsync([FromBody] AddressInfoDto addressDto)
+        public async Task<ActionResult<AddAddressDto>> CreateAsync([FromBody] AddAddressDto addressDto)
         {
             Ensure.Any.IsNotNull(addressDto, nameof(addressDto));
-            var asset = await _AddressService.AddAsync(addressDto);
+            var asset = await _addressService.AddAsync(addressDto);
             return Created(Endpoints.Address, asset);
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateAsync([FromBody] AddressInfoDto AddressDto)
+        public async Task<ActionResult> UpdateAsync([FromBody] AddressInfoDto addressDto)
         {
-            Ensure.Any.IsNotNull(AddressDto, nameof(AddressDto));
-            await _AddressService.UpdateAsync(AddressDto);
+            Ensure.Any.IsNotNull(addressDto, nameof(addressDto));
+            await _addressService.UpdateAsync(addressDto);
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateByIdAsync(Guid id ,[FromBody] UpdateAddressDto updateAddressDto)
+        {
+            Ensure.Any.IsNotNull(updateAddressDto, nameof(AddressDto));
+            await _addressService.UpdateByIdAsync(id, updateAddressDto);
 
             return NoContent();
         }
@@ -40,22 +49,22 @@ namespace Rookie.Ecom.Admin.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAssetAsync([FromRoute] Guid id)
         {
-            var AddressDto = await _AddressService.GetByIdAsync(id);
+            var AddressDto = await _addressService.GetByIdAsync(id);
             Ensure.Any.IsNotNull(AddressDto, nameof(AddressDto));
-            await _AddressService.DeleteAsync(id);
+            await _addressService.DeleteAsync(id);
             return NoContent();
         }
 
         [HttpGet("{id}")]
         public async Task<AddressDto> GetByIdAsync(Guid id)
         {
-            return await _AddressService.GetByIdAsync(id);
+            return await _addressService.GetByIdAsync(id);
         }
 
         [HttpGet]
         public async Task<IEnumerable<AddressDto>> GetAsync()
         {
-            return await _AddressService.GetAllAsync();
+            return await _addressService.GetAllAsync();
         }
     }
 }

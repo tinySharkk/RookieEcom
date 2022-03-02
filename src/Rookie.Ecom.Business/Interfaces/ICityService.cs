@@ -23,6 +23,8 @@ namespace Rookie.Ecom.Business.Interfaces
       
         Task UpdateAsync(CityDto cityDto);
 
+        Task UpdateByIdAsync (Guid id, UpdateCityDto updateCityDto);
+
 
     }
 }

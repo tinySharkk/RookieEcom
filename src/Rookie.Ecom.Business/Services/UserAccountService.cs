@@ -23,9 +23,9 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<UserAccountInfoDto> AddAsync(UserAccountInfoDto UserAccountInfoDto)
+        public async Task<UserAccountInfoDto> AddAsync(UserAccountInfoDto userAccountInfoDto)
         {
-            var userAccount = _mapper.Map<UserAccount>(UserAccountInfoDto);
+            var userAccount = _mapper.Map<UserAccount>(userAccountInfoDto);
             var item = await _baseRepository.AddAsync(userAccount);
             return _mapper.Map<UserAccountInfoDto>(item);
         }
@@ -57,9 +57,19 @@ namespace Rookie.Ecom.Business.Services
             throw new NotImplementedException();
         }
 
-        public async Task UpdateAsync(UserAccountInfoDto UserAccountInfoDto)
+        public async Task UpdateAsync(UserAccountInfoDto userAccountInfoDto)
         {
-            var userAccount = _mapper.Map<UserAccount>(UserAccountInfoDto);
+            var userAccount = _mapper.Map<UserAccount>(userAccountInfoDto);
+            await _baseRepository.UpdateAsync(userAccount);
+        }
+
+        public async Task UpdateByIdAsync(Guid id, UpdateUserAccountDto updateUserAccountDto)
+        {
+            var userAccount = await _baseRepository.GetByIdAsync(id);
+
+            _mapper.Map(updateUserAccountDto, userAccount);
+            userAccount.UpdatedDate = DateTime.Now;
+
             await _baseRepository.UpdateAsync(userAccount);
         }
     }

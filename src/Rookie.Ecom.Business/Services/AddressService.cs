@@ -23,11 +23,11 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<AddressInfoDto> AddAsync(AddressInfoDto addressDto)
+        public async Task<AddAddressDto> AddAsync(AddAddressDto addressDto)
         {
             var address = _mapper.Map<Address>(addressDto);
             var item = await _baseRepository.AddAsync(address);
-            return _mapper.Map<AddressInfoDto>(item);
+            return _mapper.Map<AddAddressDto>(item);
         }
 
         public async Task DeleteAsync(Guid id)
@@ -85,6 +85,17 @@ namespace Rookie.Ecom.Business.Services
             address.UpdatedDate = DateTime.Now;
 
             await _baseRepository.UpdateAsync(address);
+        }
+
+        public async Task UpdateByIdAsync(Guid id, UpdateAddressDto updateAddressDto)
+        {
+            var address = await _baseRepository.GetByIdAsync(id);
+
+            _mapper.Map(updateAddressDto, address);
+            address.UpdatedDate = DateTime.Now;
+
+            await _baseRepository.UpdateAsync(address);
+           
         }
     }
 }

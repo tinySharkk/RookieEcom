@@ -13,25 +13,25 @@ namespace Rookie.Ecom.Admin.Controllers
     [Route("api/[controller]")]
     public class CartController : Controller
     {
-        private readonly ICartService _CartService;
-        public CartController(ICartService CartService)
+        private readonly ICartService _cartService;
+        public CartController(ICartService cartService)
         {
-            _CartService = CartService;
+            _cartService = cartService;
         }
 
         [HttpPost]
-        public async Task<ActionResult<CartInfoDto>> CreateAsync([FromBody] CartInfoDto CartInfoDto)
+        public async Task<ActionResult<CartInfoDto>> CreateAsync([FromBody] CartInfoDto cartInfoDto)
         {
-            Ensure.Any.IsNotNull(CartInfoDto, nameof(CartInfoDto));
-            var asset = await _CartService.AddAsync(CartInfoDto);
+            Ensure.Any.IsNotNull(cartInfoDto, nameof(cartInfoDto));
+            var asset = await _cartService.AddAsync(cartInfoDto);
             return Created(Endpoints.Cart, asset);
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateAsync([FromBody] CartInfoDto CartInfoDto)
+        public async Task<ActionResult> UpdateAsync([FromBody] CartInfoDto cartInfoDto)
         {
-            Ensure.Any.IsNotNull(CartInfoDto, nameof(CartInfoDto));
-            await _CartService.UpdateAsync(CartInfoDto);
+            Ensure.Any.IsNotNull(cartInfoDto, nameof(cartInfoDto));
+            await _cartService.UpdateAsync(cartInfoDto);
 
             return NoContent();
         }
@@ -39,23 +39,23 @@ namespace Rookie.Ecom.Admin.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAssetAsync([FromRoute] Guid id)
         {
-            var CartInfoDto = await _CartService.GetByIdAsync(id);
+            var CartInfoDto = await _cartService.GetByIdAsync(id);
             Ensure.Any.IsNotNull(CartInfoDto, nameof(CartInfoDto));
-            await _CartService.DeleteAsync(id);
+            await _cartService.DeleteAsync(id);
             return NoContent();
         }
 
         [HttpGet("{id}")]
         public async Task<CartInfoDto> GetByIdAsync(Guid id)
-            => await _CartService.GetByIdAsync(id);
+            => await _cartService.GetByIdAsync(id);
 
         [HttpGet]
         public async Task<IEnumerable<CartInfoDto>> GetAsync()
-            => await _CartService.GetAllAsync();
+            => await _cartService.GetAllAsync();
 
        /* [HttpGet("find")]
         public async Task<PagedResponseModel<CartInfoDto>>
           FindAsync(string name, int page = 1, int limit = 10)
-          => await _CartService.PagedQueryAsync(name, page, limit);*/
+          => await _cartService.PagedQueryAsync(name, page, limit);*/
     }
 }

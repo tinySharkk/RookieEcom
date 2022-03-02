@@ -9,4 +9,18 @@ namespace Rookie.Ecom.Contracts.Dtos
         public string Desc { get; set; }
 
     }
+
+    public class CategoryInfoDto : BaseDto
+    {
+        public string Name { get; set; }
+
+        public string Desc { get; set; }
+    }
+
+    public class UpdateCategoryDto
+    {
+        public string Name { get; set; }
+
+        public string Desc { get; set; }
+    }
 }

@@ -23,9 +23,9 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<RatingInfoDto> AddAsync(RatingInfoDto RatingInfoDto)
+        public async Task<RatingInfoDto> AddAsync(RatingInfoDto ratingInfoDto)
         {
-            var rating = _mapper.Map<Rating>(RatingInfoDto);
+            var rating = _mapper.Map<Rating>(ratingInfoDto);
             var item = await _baseRepository.AddAsync(rating);
             return _mapper.Map<RatingInfoDto>(item);
         }
@@ -70,6 +70,16 @@ namespace Rookie.Ecom.Business.Services
         public async Task UpdateAsync(RatingInfoDto RatingInfoDto)
         {
             var rating = _mapper.Map<Rating>(RatingInfoDto);
+            await _baseRepository.UpdateAsync(rating);
+        }
+
+        public async Task UpdateByIdAsync(Guid id, UpdateRatingDto updateRatingDto)
+        {
+            var rating = await _baseRepository.GetByIdAsync(id);
+
+            _mapper.Map(updateRatingDto, rating);
+            rating.UpdatedDate = DateTime.Now; 
+
             await _baseRepository.UpdateAsync(rating);
         }
     }

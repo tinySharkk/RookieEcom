@@ -20,18 +20,18 @@ namespace Rookie.Ecom.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<OrderItemInfoDto>> CreateAsync([FromBody] OrderItemInfoDto OrderItemInfoDto)
+        public async Task<ActionResult<OrderItemInfoDto>> CreateAsync([FromBody] OrderItemInfoDto orderItemInfoDto)
         {
-            Ensure.Any.IsNotNull(OrderItemInfoDto, nameof(OrderItemInfoDto));
-            var asset = await _orderItemService.AddAsync(OrderItemInfoDto);
+            Ensure.Any.IsNotNull(orderItemInfoDto, nameof(OrderItemInfoDto));
+            var asset = await _orderItemService.AddAsync(orderItemInfoDto);
             return Created(Endpoints.Order, asset);
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateAsync([FromBody] OrderItemInfoDto OrderItemInfoDto)
+        public async Task<ActionResult> UpdateAsync([FromBody] OrderItemInfoDto orderItemInfoDto)
         {
-            Ensure.Any.IsNotNull(OrderItemInfoDto, nameof(OrderItemInfoDto));
-            await _orderItemService.UpdateAsync(OrderItemInfoDto);
+            Ensure.Any.IsNotNull(orderItemInfoDto, nameof(orderItemInfoDto));
+            await _orderItemService.UpdateAsync(orderItemInfoDto);
 
             return NoContent();
         }
@@ -39,8 +39,8 @@ namespace Rookie.Ecom.Admin.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAssetAsync([FromRoute] Guid id)
         {
-            var OrderItemInfoDto = await _orderItemService.GetByIdAsync(id);
-            Ensure.Any.IsNotNull(OrderItemInfoDto, nameof(OrderItemInfoDto));
+            var orderItemInfoDto = await _orderItemService.GetByIdAsync(id);
+            Ensure.Any.IsNotNull(orderItemInfoDto, nameof(orderItemInfoDto));
             await _orderItemService.DeleteAsync(id);
             return NoContent();
         }

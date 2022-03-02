@@ -14,6 +14,7 @@ namespace Rookie.Ecom.DataAccessor.Entities
         public string UserName { get; set; }
 
         [Required]
+        [StringLength(maximumLength: 50)]
         public string Password { get; set; }
 
         [Required]

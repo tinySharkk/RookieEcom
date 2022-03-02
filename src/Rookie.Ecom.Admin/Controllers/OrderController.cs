@@ -14,17 +14,17 @@ namespace Rookie.Ecom.Admin.Controllers
     [Route("api/[controller]")]
     public class OrderController : Controller
     {
-        private readonly IOrderService _OrderService;
+        private readonly IOrderService _orderService;
         public OrderController(IOrderService orderService)
         {
-            _OrderService = orderService;
+            _orderService = orderService;
         }
 
         [HttpPost]
-        public async Task<ActionResult<OrderInfoDto>> CreateAsync([FromBody] OrderInfoDto OrderInfoDto)
+        public async Task<ActionResult<OrderInfoDto>> CreateAsync([FromBody] OrderInfoDto orderInfoDto)
         {
-            Ensure.Any.IsNotNull(OrderInfoDto, nameof(OrderInfoDto));
-            var asset = await _OrderService.AddAsync(OrderInfoDto);
+            Ensure.Any.IsNotNull(orderInfoDto, nameof(orderInfoDto));
+            var asset = await _orderService.AddAsync(orderInfoDto);
             return Created(Endpoints.Order, asset);
         }
 
@@ -32,7 +32,7 @@ namespace Rookie.Ecom.Admin.Controllers
         public async Task<ActionResult> UpdateAsync([FromBody] OrderInfoDto OrderInfoDto)
         {
             Ensure.Any.IsNotNull(OrderInfoDto, nameof(OrderInfoDto));
-            await _OrderService.UpdateAsync(OrderInfoDto);
+            await _orderService.UpdateAsync(OrderInfoDto);
 
             return NoContent();
         }
@@ -40,23 +40,23 @@ namespace Rookie.Ecom.Admin.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAssetAsync([FromRoute] Guid id)
         {
-            var OrderInfoDto = await _OrderService.GetByIdAsync(id);
-            Ensure.Any.IsNotNull(OrderInfoDto, nameof(OrderInfoDto));
-            await _OrderService.DeleteAsync(id);
+            var orderInfoDto = await _orderService.GetByIdAsync(id);
+            Ensure.Any.IsNotNull(orderInfoDto, nameof(orderInfoDto));
+            await _orderService.DeleteAsync(id);
             return NoContent();
         }
 
         [HttpGet("{id}")]
         public async Task<OrderInfoDto> GetByIdAsync(Guid id)
-            => await _OrderService.GetByIdAsync(id);
+            => await _orderService.GetByIdAsync(id);
 
         [HttpGet]
         public async Task<IEnumerable<OrderInfoDto>> GetAsync()
-            => await _OrderService.GetAllAsync();
+            => await _orderService.GetAllAsync();
 
         /*[HttpGet("find")]
         public async Task<PagedResponseModel<OrderInfoDto>>
           FindAsync(string name, int page = 1, int limit = 10)
-          => await _OrderService.PagedQueryAsync(name, page, limit);*/
+          => await _orderService.PagedQueryAsync(name, page, limit);*/
     }
 }

@@ -13,25 +13,25 @@ namespace Rookie.Ecom.Admin.Controllers
     [Route("api/[controller]")]
     public class RatingController : Controller
     {
-        private readonly IRatingService _RatingService;
-        public RatingController(IRatingService RatingService)
+        private readonly IRatingService _ratingService;
+        public RatingController(IRatingService ratingService)
         {
-            _RatingService = RatingService;
+            _ratingService = ratingService;
         }
 
         [HttpPost]
-        public async Task<ActionResult<RatingInfoDto>> CreateAsync([FromBody] RatingInfoDto RatingDto)
+        public async Task<ActionResult<RatingInfoDto>> CreateAsync([FromBody] RatingInfoDto ratingDto)
         {
-            Ensure.Any.IsNotNull(RatingDto, nameof(RatingDto));
-            var asset = await _RatingService.AddAsync(RatingDto);
+            Ensure.Any.IsNotNull(ratingDto, nameof(ratingDto));
+            var asset = await _ratingService.AddAsync(ratingDto);
             return Created(Endpoints.Rating, asset);
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateAsync([FromBody] RatingInfoDto RatingDto)
+        public async Task<ActionResult> UpdateAsync([FromBody] RatingInfoDto ratingDto)
         {
-            Ensure.Any.IsNotNull(RatingDto, nameof(RatingDto));
-            await _RatingService.UpdateAsync(RatingDto);
+            Ensure.Any.IsNotNull(ratingDto, nameof(ratingDto));
+            await _ratingService.UpdateAsync(ratingDto);
 
             return NoContent();
         }
@@ -39,23 +39,23 @@ namespace Rookie.Ecom.Admin.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAssetAsync([FromRoute] Guid id)
         {
-            var RatingDto = await _RatingService.GetByIdAsync(id);
-            Ensure.Any.IsNotNull(RatingDto, nameof(RatingDto));
-            await _RatingService.DeleteAsync(id);
+            var ratingDto = await _ratingService.GetByIdAsync(id);
+            Ensure.Any.IsNotNull(ratingDto, nameof(ratingDto));
+            await _ratingService.DeleteAsync(id);
             return NoContent();
         }
 
         [HttpGet("{id}")]
         public async Task<RatingInfoDto> GetByIdAsync(Guid id)
-            => await _RatingService.GetByIdAsync(id);
+            => await _ratingService.GetByIdAsync(id);
 
         [HttpGet]
         public async Task<IEnumerable<RatingInfoDto>> GetAsync()
-            => await _RatingService.GetAllAsync();
+            => await _ratingService.GetAllAsync();
 
         [HttpGet("find")]
         public async Task<PagedResponseModel<RatingInfoDto>>
             FindAsync(string name, int page = 1, int limit = 10)
-            => await _RatingService.PagedQueryAsync(name, page, limit);
+            => await _ratingService.PagedQueryAsync(name, page, limit);
     }
 }

@@ -22,4 +22,11 @@ namespace Rookie.Ecom.Contracts.Dtos
         public Guid? ProductId { get; set; }
 
     }
+
+    public class UpdateProductImageDto
+    {
+        public string PictureUrl { get; set; }
+
+        public string Title { get; set; }
+    }
 }

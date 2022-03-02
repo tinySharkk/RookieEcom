@@ -31,4 +31,12 @@ namespace Rookie.Ecom.Contracts.Dtos
 
         public string Feedback { get; set; }
     }
+
+    public class UpdateRatingDto
+    {
+
+        public float Star { get; set; }
+
+        public string Feedback { get; set; }
+    }
 }

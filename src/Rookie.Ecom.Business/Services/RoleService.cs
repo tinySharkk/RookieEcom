@@ -23,9 +23,9 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<RoleInfoDto> AddAsync(RoleInfoDto RoleInfoDto)
+        public async Task<RoleInfoDto> AddAsync(RoleInfoDto roleInfoDto)
         {
-            var role = _mapper.Map<Role>(RoleInfoDto);
+            var role = _mapper.Map<Role>(roleInfoDto);
             var item = await _baseRepository.AddAsync(role);
             return _mapper.Map<RoleInfoDto>(item);
         }
@@ -57,9 +57,19 @@ namespace Rookie.Ecom.Business.Services
             throw new NotImplementedException();
         }
 
-        public async Task UpdateAsync(RoleInfoDto RoleInfoDto)
+        public async Task UpdateAsync(RoleInfoDto roleInfoDto)
         {
-            var role = _mapper.Map<Role>(RoleInfoDto);
+            var role = _mapper.Map<Role>(roleInfoDto);
+            await _baseRepository.UpdateAsync(role);
+        }
+
+        public async Task UpdateByIdAsync(Guid id, UpdateRoleDto updateRoleDto)
+        {
+            var role = await _baseRepository.GetByIdAsync(id);
+
+            _mapper.Map(updateRoleDto, role);
+            role.UpdatedDate = DateTime.Now;
+
             await _baseRepository.UpdateAsync(role);
         }
     }

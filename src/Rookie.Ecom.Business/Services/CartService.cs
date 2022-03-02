@@ -23,10 +23,10 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<CartInfoDto> AddAsync(CartInfoDto CartInfoDto)
+        public async Task<CartInfoDto> AddAsync(CartInfoDto cartInfoDto)
         {
-            var Cart = _mapper.Map<Cart>(CartInfoDto);
-            var item = await _baseRepository.AddAsync(Cart);
+            var cart = _mapper.Map<Cart>(cartInfoDto);
+            var item = await _baseRepository.AddAsync(cart);
             return _mapper.Map<CartInfoDto>(item);
         }
 
@@ -37,8 +37,8 @@ namespace Rookie.Ecom.Business.Services
 
         public async Task<IEnumerable<CartInfoDto>> GetAllAsync()
         {
-            var Carts = await _baseRepository.GetAllAsync();
-            return _mapper.Map<List<CartInfoDto>>(Carts);
+            var carts = await _baseRepository.GetAllAsync();
+            return _mapper.Map<List<CartInfoDto>>(carts);
         }
 
         public async Task<CartInfoDto> GetByCategory(Guid categoryId)
@@ -48,8 +48,8 @@ namespace Rookie.Ecom.Business.Services
 
         public async Task<CartInfoDto> GetByIdAsync(Guid id)
         {
-            var Cart = await _baseRepository.GetByIdAsync(id);
-            return _mapper.Map<CartInfoDto>(Cart);
+            var cart = await _baseRepository.GetByIdAsync(id);
+            return _mapper.Map<CartInfoDto>(cart);
         }
 
         public async Task<CartInfoDto> GetByNameAsync(string name)
@@ -78,10 +78,20 @@ namespace Rookie.Ecom.Business.Services
             };
         }*/
 
-        public async Task UpdateAsync(CartInfoDto CartInfoDto)
+        public async Task UpdateAsync(CartInfoDto cartInfoDto)
         {
-            var Cart = _mapper.Map<Cart>(CartInfoDto);
-            await _baseRepository.UpdateAsync(Cart);
+            var cart = _mapper.Map<Cart>(cartInfoDto);
+            await _baseRepository.UpdateAsync(cart);
+        }
+
+        public async Task UpdateByIdAsync(Guid id, UpdateCartDto updateCartDto)
+        {
+            var cart = await _baseRepository.GetByIdAsync(id);
+
+            _mapper.Map(updateCartDto, cart);
+            cart.UpdatedDate = DateTime.Now;
+
+            await _baseRepository.UpdateAsync(cart);
         }
     }
 }

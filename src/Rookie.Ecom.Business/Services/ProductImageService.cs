@@ -23,9 +23,9 @@ namespace Rookie.Ecom.Business.Services
             _mapper = mapper;
         }
 
-        public async Task<ProductImageInfoDto> AddAsync(ProductImageInfoDto ProductImageInfoDto)
+        public async Task<ProductImageInfoDto> AddAsync(ProductImageInfoDto productImageInfoDto)
         {
-            var productImage = _mapper.Map<ProductImage>(ProductImageInfoDto);
+            var productImage = _mapper.Map<ProductImage>(productImageInfoDto);
             var item = await _baseRepository.AddAsync(productImage);
             return _mapper.Map<ProductImageInfoDto>(item);
         }
@@ -57,9 +57,19 @@ namespace Rookie.Ecom.Business.Services
             throw new NotImplementedException();
         }*/
 
-        public async Task UpdateAsync(ProductImageInfoDto ProductImageInfoDto)
+        public async Task UpdateAsync(ProductImageInfoDto productImageInfoDto)
         {
-            var productImage = _mapper.Map<ProductImage>(ProductImageInfoDto);
+            var productImage = _mapper.Map<ProductImage>(productImageInfoDto);
+            await _baseRepository.UpdateAsync(productImage);
+        }
+
+        public async Task UpdateByIdAsync(Guid id, UpdateProductImageDto updateProductImageDto)
+        {
+            var productImage = await _baseRepository.GetByIdAsync(id);
+
+            _mapper.Map(updateProductImageDto, productImage);
+            productImage.UpdatedDate = DateTime.Now;
+
             await _baseRepository.UpdateAsync(productImage);
         }
     }

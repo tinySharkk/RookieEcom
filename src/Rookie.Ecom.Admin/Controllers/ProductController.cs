@@ -14,25 +14,35 @@ namespace Rookie.Ecom.Admin.Controllers
     [Route("api/[controller]")]
     public class ProductController : Controller
     {
-        private readonly IProductService _ProductService;
-        public ProductController(IProductService cityService)
+        private readonly IProductService _productService;
+        public ProductController(IProductService productService)
         {
-            _ProductService = cityService;
+            _productService = productService;
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProductInfoDto>> CreateAsync([FromBody] ProductInfoDto ProductInfoDto)
+        public async Task<ActionResult<ProductInfoDto>> CreateAsync([FromBody] ProductInfoDto productInfoDto)
         {
-            Ensure.Any.IsNotNull(ProductInfoDto, nameof(ProductInfoDto));
-            var asset = await _ProductService.AddAsync(ProductInfoDto);
+            Ensure.Any.IsNotNull(productInfoDto, nameof(productInfoDto));
+            var asset = await _productService.AddAsync(productInfoDto);
             return Created(Endpoints.Product, asset);
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateAsync([FromBody] ProductInfoDto ProductInfoDto)
+        public async Task<ActionResult> UpdateAsync([FromBody] ProductInfoDto productInfoDto)
         {
-            Ensure.Any.IsNotNull(ProductInfoDto, nameof(ProductInfoDto));
-            await _ProductService.UpdateAsync(ProductInfoDto);
+            Ensure.Any.IsNotNull(productInfoDto, nameof(productInfoDto));
+            await _productService.UpdateAsync(productInfoDto);
+
+            return NoContent();
+        }
+
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateByIdAsync(Guid id, [FromBody] UpdateProductDto updateProductDto)
+        {
+            Ensure.Any.IsNotNull(updateProductDto, nameof(UpdateProductDto));
+            await _productService.UpdateByIdAsync(id, updateProductDto);
 
             return NoContent();
         }
@@ -40,23 +50,23 @@ namespace Rookie.Ecom.Admin.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAssetAsync([FromRoute] Guid id)
         {
-            var ProductInfoDto = await _ProductService.GetByIdAsync(id);
-            Ensure.Any.IsNotNull(ProductInfoDto, nameof(ProductInfoDto));
-            await _ProductService.DeleteAsync(id);
+            var productInfoDto = await _productService.GetByIdAsync(id);
+            Ensure.Any.IsNotNull(productInfoDto, nameof(productInfoDto));
+            await _productService.DeleteAsync(id);
             return NoContent();
         }
 
         [HttpGet("{id}")]
         public async Task<ProductInfoDto> GetByIdAsync(Guid id)
-            => await _ProductService.GetByIdAsync(id);
+            => await _productService.GetByIdAsync(id);
 
         [HttpGet]
         public async Task<IEnumerable<ProductInfoDto>> GetAsync()
-            => await _ProductService.GetAllAsync();
+            => await _productService.GetAllAsync();
 
         [HttpGet("find")]
         public async Task<PagedResponseModel<ProductInfoDto>>
           FindAsync(string name, int page = 1, int limit = 10)
-          => await _ProductService.PagedQueryAsync(name, page, limit);
+          => await _productService.PagedQueryAsync(name, page, limit);
     }
 }
