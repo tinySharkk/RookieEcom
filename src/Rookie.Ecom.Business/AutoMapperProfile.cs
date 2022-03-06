@@ -37,7 +37,7 @@ namespace Rookie.Ecom.Business
                 .ForMember(d => d.UpdatedDate, t => t.Ignore())
                 .ForMember(d => d.CreatedDate, t => t.Ignore())
                 .ForMember(d => d.CreatorId, t => t.Ignore())
-                .ForMember(d => d.Product t => t.Ignore())
+                .ForMember(d => d.Product, t => t.Ignore())
                 .ForMember(d => d.User, t => t.Ignore())
                 .ForMember(d => d.UserId, t => t.Ignore())
                 .ForMember(d => d.ProductId, t => t.Ignore());

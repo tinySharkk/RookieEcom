@@ -7,7 +7,7 @@ import { actionCreators } from '../store/Category';
 class Category extends Component {
     componentDidMount() {
         // This method is called when the component is first added to the document
-        this.ensureDataFetched();
+        this.ensureDataFetched();   
     }
 
     componentDidUpdate() {
@@ -59,8 +59,8 @@ function renderCategoryTable(props) {
 }
 
 function renderPagination(props) {
-    const prevStartDateIndex = (props.page || 0) - 5;
-    const nextStartDateIndex = (props.page || 0) + 5;
+    const prevStartDateIndex = (props.page || 0) - 3;
+    const nextStartDateIndex = (props.page || 0) + 3;
 
     return <p className='clearfix text-center'>
         <Link className='btn btn-default pull-left' to={`/category/${prevStartDateIndex}`}>Previous</Link>

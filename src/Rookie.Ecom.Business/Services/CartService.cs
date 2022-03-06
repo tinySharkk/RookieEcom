@@ -57,11 +57,11 @@ namespace Rookie.Ecom.Business.Services
             throw new NotImplementedException();
         }
 
-        /*public async Task<PagedResponseModel<CartInfoDto>> PagedQueryAsync(string name, int page, int limit)
+        public async Task<PagedResponseModel<CartInfoDto>> PagedQueryAsync(Guid id, int page, int limit)
         {
             var query = _baseRepository.Entities;
 
-            query = query.Where(x => string.IsNullOrEmpty(name) || x.Id.Contains(name));
+            //query = query.Where(x => string.IsNullOrEmpty(id) || x.Id.Contains(id));
 
             query = query.OrderBy(x => x.Id);
 
@@ -76,7 +76,7 @@ namespace Rookie.Ecom.Business.Services
                 TotalItems = assets.TotalItems,
                 Items = _mapper.Map<IEnumerable<CartInfoDto>>(assets.Items)
             };
-        }*/
+        }
 
         public async Task UpdateAsync(CartInfoDto cartInfoDto)
         {
