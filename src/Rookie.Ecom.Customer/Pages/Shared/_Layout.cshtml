@@ -9,24 +9,63 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg fixed-top py-3">
+        @*<nav class="navbar navbar-expand-lg fixed-top py-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">tinySharkk</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="Category/Category">Category</a>
-                        </li>
+            <a class="navbar-brand" asp-area="" asp-page="/Index">tinySharkk</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="Category/Category">Category</a>
+            </li>
+            </ul>
+            </div>
+            </div>
+            </nav>*@
+        <nav class="navbar navbar-expand-lg fixed-top py-3">
+            <div class="container collapse navbar-collapse">
+                <a class="navbar-brand text-uppercase font-weight-bold" asp-area="" asp-page="/Index">tinySharkk</a>
+                <a class="nav-link text-uppercase font-weight-bold" asp-area="" asp-page="/Index">Home</a>
+                <div class="nav-item dropdown">
+                    <button id="dropdownmenu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn bg-transparent nav-link dropdown-toggle font-weight-bold text-uppercase">Category</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Main</a>
+                        <a class="dropdown-item" href="#">CPU</a>
+                        <a class="dropdown-item" href="#">VGA</a>
+                    </div>
+                </div>
+
+                                        <div class="nav-item search">
+							<div class="input-group">
+						      <input type="text" placeholder="Search..">
+						      <span class="input-group-btn">
+						        <button class="btn bg-transparent nav-link font-weight-bold text-uppercase" type="button">
+                                     <i class="fa fa-search"></i>
+                                    </button>
+						      </span>
+						    </div>
+						</div>
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a href="#" class="nav-link text-uppercase font-weight-bold">Home <span class="sr-only">(current)</span></a></li>
+                        
+
+                        <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">About</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Gallery</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Portfolio</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Contact</a></li>
+
                     </ul>
                 </div>
             </div>
