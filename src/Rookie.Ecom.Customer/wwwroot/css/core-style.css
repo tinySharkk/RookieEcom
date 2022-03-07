@@ -45,8 +45,8 @@ a {
   -webkit-transition: all 500ms ease 0s;
   transition: all 500ms ease 0s;
   text-decoration: none;
-  outline: 0 solid transparent;
-  color: #fbf5f5;
+  //outline: 0 solid transparent;
+  //color: #fbf5f5;
   font-weight: 600;
   font-size: 12px; }
   a:hover, a:focus {
@@ -1197,7 +1197,7 @@ img {
     text-transform: uppercase;
     font-size: 12px;
     margin-bottom: 15px;
-    display: block; }
+/*    display: block;*/ }
   .widget .catagories-menu .sub-menu {
     margin-left: 15px;
     margin-bottom: 15px; }
