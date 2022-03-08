@@ -57,7 +57,7 @@ namespace Rookie.Ecom.Business.Services
             throw new NotImplementedException();
         }
 
-        public async Task<PagedResponseModel<ProductInfoDto>> PagedQueryAsync(string name, int page, int limit)
+        public async Task<PagedResponseModel<ProductDto>> PagedQueryAsync(string? name, int page, int limit)
         {
             var query = _baseRepository.Entities;
 
@@ -69,12 +69,12 @@ namespace Rookie.Ecom.Business.Services
                 .AsNoTracking()
                 .PaginateAsync(page, limit);
 
-            return new PagedResponseModel<ProductInfoDto>
+            return new PagedResponseModel<ProductDto>
             {
                 CurrentPage = assets.CurrentPage,
                 TotalPages = assets.TotalPages,
                 TotalItems = assets.TotalItems,
-                Items = _mapper.Map<IEnumerable<ProductInfoDto>>(assets.Items)
+                Items = _mapper.Map<IEnumerable<ProductDto>>(assets.Items)
             };
         }
 

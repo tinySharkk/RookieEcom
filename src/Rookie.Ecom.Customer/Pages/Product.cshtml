@@ -1,6 +1,7 @@
 ﻿@page
 @model Rookie.Ecom.Customer.Pages.ProductModel
 @{
+    ViewData["Title"] = "Product page";
 }
     <!-- ##### Shop Grid Area Start ##### -->
     <section class="shop_grid_area section-padding-80">
@@ -69,8 +70,35 @@
                         </div>
 
                         <div class="row">
-
+                           @foreach (var product in Model.listProduct.Items) {
                             <!-- Single Product -->
+                            <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="single-product-wrapper">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <img src="img/product-img/product-1.jpg" alt="">
+                                    </div>
+
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+                                        <a href="single-product-details.html">
+                                            <h6>@product.Name</h6>
+                                        </a>
+                                        <p class="product-price">@product.Price</p>
+
+                                        <!-- Hover Content -->
+                                        <div class="hover-content">
+                                            <!-- Add to Cart -->
+                                            <div class="add-to-cart-btn">
+                                                <a href="#" class="btn essence-btn">Add to Cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+
+@*                            <!-- Single Product -->
                             <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="single-product-wrapper">
                                     <!-- Product Image -->
@@ -325,7 +353,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>*@
 
                         </div>
                     </div>

@@ -8,6 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Rookie.Ecom.Business;
+using FluentValidation.AspNetCore;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Rookie.Ecom.Customer.Filters;
+using System.Reflection;
 
 namespace Rookie.Ecom.Customer
 {
@@ -23,6 +29,27 @@ namespace Rookie.Ecom.Customer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews(x =>
+            {
+                x.Filters.Add(typeof(ValidatorActionFilter));
+            })
+            .AddFluentValidation(fv =>
+            {
+                fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+                fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+            })
+            .AddJsonOptions(ops =>
+            {
+                ops.JsonSerializerOptions.IgnoreNullValues = true;
+                ops.JsonSerializerOptions.WriteIndented = true;
+                ops.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                ops.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+                ops.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
+
+            services.AddHttpContextAccessor();
+            services.AddBusinessLayer(Configuration);
+            services.AddSwaggerGen();
             services.AddRazorPages()
                 .AddRazorPagesOptions(options => {
                     options.RootDirectory = "/Pages";
