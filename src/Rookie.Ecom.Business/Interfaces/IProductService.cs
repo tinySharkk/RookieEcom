@@ -12,6 +12,8 @@ namespace Rookie.Ecom.Business.Interfaces
 
         Task<PagedResponseModel<ProductDto>> PagedQueryAsync(string? name, int page, int limit);
 
+        Task<PagedResponseModel<ProductDto>> PagedQueryByCategoryAsync(Guid? category, int page, int limit);
+
         Task<ProductInfoDto> GetByIdAsync(Guid id);
 
         Task<ProductInfoDto> GetByNameAsync(string name);

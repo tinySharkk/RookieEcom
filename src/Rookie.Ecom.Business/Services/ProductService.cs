@@ -78,6 +78,27 @@ namespace Rookie.Ecom.Business.Services
             };
         }
 
+        public async Task<PagedResponseModel<ProductDto>> PagedQueryByCategoryAsync(Guid? category, int page, int limit)
+        {
+            var query = _baseRepository.Entities;
+
+            query = query.Where(x => x.CategoryId == category);
+
+            query = query.OrderBy(x => x.Name);
+
+            var assets = await query
+                .AsNoTracking()
+                .PaginateAsync(page, limit);
+
+            return new PagedResponseModel<ProductDto>
+            {
+                CurrentPage = assets.CurrentPage,
+                TotalPages = assets.TotalPages,
+                TotalItems = assets.TotalItems,
+                Items = _mapper.Map<IEnumerable<ProductDto>>(assets.Items)
+            };
+        }
+
         public async Task UpdateAsync(ProductInfoDto ProductInfoDto)
         {
             var product = _mapper.Map<Product>(ProductInfoDto);

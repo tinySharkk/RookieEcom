@@ -26,7 +26,7 @@ namespace Rookie.Ecom.DataAccessor.Entities
 
         public Guid? CategoryId { get; set; }
 
-        public ICollection<Category> Category { get; set; }
+        public Category Category { get; set; }
 
         public ICollection<ProductImage> ProductImages { get; set; }
     }
