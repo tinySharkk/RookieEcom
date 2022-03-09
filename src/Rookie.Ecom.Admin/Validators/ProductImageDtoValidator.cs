@@ -15,9 +15,9 @@ namespace Rookie.Ecom.Admin.Validators
               .NotNull()
               .WithMessage(x => string.Format(ErrorTypes.Common.RequiredError, nameof(x.Id)));
 
-            RuleFor(m => m.PictureUrl)
+            RuleFor(m => m.ImageUrl)
               .NotNull()
-              .WithMessage(x => string.Format(ErrorTypes.Common.RequiredError, nameof(x.PictureUrl)));
+              .WithMessage(x => string.Format(ErrorTypes.Common.RequiredError, nameof(x.ImageUrl)));
 
             RuleFor(m => m.Title)
               .NotNull()

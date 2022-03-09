@@ -17,20 +17,31 @@ namespace Rookie.Ecom.Customer.Pages
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
         private readonly IConfiguration _configuration;
+        private readonly IProductImageService _productImageService;
 
-        public ProductModel(IProductService productService, ICategoryService categoryService, IConfiguration configuration)
+        public ProductModel(IProductService productService, ICategoryService categoryService, IConfiguration configuration, IProductImageService productImageService)
         {
             _productService = productService;
             _categoryService = categoryService;
             _configuration = configuration;
+            _productImageService = productImageService;
         }
 
         public int currentPage ;
-
         public string category = null;
         public int pageItems { get; set; } = 1;
         public PagedResponseModel<ProductDto> products { get; set; }
         public IEnumerable<CategoryDto> categorys { get; set; }
+        public ProductImageInfoDto prodImage { get; set; }
+
+
+        public async Task<string> productImage (Guid productId)
+        {
+            prodImage = await _productImageService.GetByProductIdAsync(productId);
+
+            return prodImage.ImageUrl;
+            //return "1eMRUN40mByRkFWBS2R1N1ZFFZGCrxdYx";
+        }
 
         public async Task OnGet(Guid? categoryId, int? pageNo)
         {
@@ -48,7 +59,6 @@ namespace Rookie.Ecom.Customer.Pages
             }
 
             categorys = await _categoryService.GetAllAsync();
-
            
         }
     }

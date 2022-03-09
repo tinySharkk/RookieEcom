@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Rookie.Ecom.Business.Services
 {
@@ -25,6 +26,10 @@ namespace Rookie.Ecom.Business.Services
 
         public async Task<ProductImageInfoDto> AddAsync(ProductImageInfoDto productImageInfoDto)
         {
+            Regex getImageIdFromGoogleDrive = new Regex(@"\/d\/(.+)\/");
+            Match id = getImageIdFromGoogleDrive.Match(productImageInfoDto.ImageUrl);
+            productImageInfoDto.ImageUrl =  id.ToString().TrimStart('/', 'd').Trim('/');
+            //productImageInfoDto.PictureUrl
             var productImage = _mapper.Map<ProductImage>(productImageInfoDto);
             var item = await _baseRepository.AddAsync(productImage);
             return _mapper.Map<ProductImageInfoDto>(item);
@@ -41,6 +46,17 @@ namespace Rookie.Ecom.Business.Services
             return _mapper.Map<List<ProductImageInfoDto>>(images);
         }
 
+        public async Task<IEnumerable<ProductImageInfoDto>> GetAllByProductIdAsync(Guid productId)
+        {
+
+
+            var allImages = await _baseRepository.GetAllAsync();
+            var images = allImages.Where(x => x.ProductId == productId);
+            
+
+            return _mapper.Map<List<ProductImageInfoDto>>(images);
+        }
+
         public async Task<ProductImageInfoDto> GetByIdAsync(Guid id)
         {
             var productImage = await _baseRepository.GetByIdAsync(id);
@@ -49,7 +65,10 @@ namespace Rookie.Ecom.Business.Services
 
         public async Task<ProductImageInfoDto> GetByProductIdAsync(Guid productId)
         {
-            throw new NotImplementedException();
+            var images = await _baseRepository.GetAllAsync();
+            var firstImage = images.Where(x => x.ProductId == productId).First();
+
+            return _mapper.Map<ProductImageInfoDto>(firstImage);
         }
 
        /* public async Task<PagedResponseModel<ProductImageInfoDto>> PagedQueryAsync(string name, int page, int limit)

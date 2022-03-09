@@ -94,6 +94,7 @@ namespace Rookie.Ecom.Business
             CreateMap<ProductImageDto, ProductImage>();
             CreateMap<ProductImageInfoDto, ProductImage>()
                 .ForMember(d => d.Product, t => t.Ignore());
+            CreateMap<ProductImageInfoDto, ProductImageInfoDto>();
             CreateMap<UpdateProductImageDto, ProductImage>()
                 .ForMember(d => d.Id, t => t.Ignore())
                 .ForMember(d => d.CreatedDate, t => t.Ignore())

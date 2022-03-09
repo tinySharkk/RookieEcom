@@ -4,7 +4,7 @@ namespace Rookie.Ecom.Contracts.Dtos
 {
     public class ProductImageDto : BaseDto
     {
-        public string PictureUrl { get; set; }
+        public string ImageUrl { get; set; }
 
         public string Title { get; set; }
 
@@ -15,7 +15,7 @@ namespace Rookie.Ecom.Contracts.Dtos
 
     public class ProductImageInfoDto : BaseDto
     {
-        public string PictureUrl { get; set; }
+        public string ImageUrl { get; set; }
 
         public string Title { get; set; }
 
@@ -25,7 +25,7 @@ namespace Rookie.Ecom.Contracts.Dtos
 
     public class UpdateProductImageDto
     {
-        public string PictureUrl { get; set; }
+        public string ImageUrl { get; set; }
 
         public string Title { get; set; }
     }

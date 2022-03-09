@@ -60,16 +60,17 @@
                     <div class="classynav">
                         <ul>
                             <li><a asp-area="" asp-page="/Index">Home</a></li>
-                            <li>
+                            @*<li>
                                 <a href="#">Category</a>
                                 <ul class="dropdown">
-                                    <li><a href="#">Home</a></li>
+                                    
+                                    <li><a asp-page = "/Product/" asp-route-categoryId="@category.Id" asp-route-pageNo="1">Home</a></li>
                                     <li><a href="#">Shop</a></li>
                                     <li><a href="#">Product Details</a></li>
                                     <li><a href="#">Checkout</a></li>
                                     <li><a href="#">Blog</a></li>
                                 </ul>
-                            </li>
+                            </li>*@
                             <li><a asp-area="" asp-page="/Product">Product</a></li>
                             <li><a href="#">Contact</a></li>
                         </ul>

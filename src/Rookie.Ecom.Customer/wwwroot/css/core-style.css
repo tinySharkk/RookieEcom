@@ -1476,7 +1476,9 @@ img {
 
 .single_product_details_area .single_product_desc .product-quantity {
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 4px;
+    margin-top = 10px;
+    margin-bottom = 12px;
 }
 
     .single_product_details_area .single_product_desc .product-quantity .pro-qty {
@@ -1486,6 +1488,8 @@ img {
         border-radius: 50px;
         text-align: center;
         display: inline-block;
+        margin-top = 10px;
+        margin-bottom = 12px;
     }
 
         .single_product_details_area .single_product_desc .product-quantity .pro-qty input {
@@ -1511,6 +1515,7 @@ img {
         }
 
 .single_product_details_area .single_product_desc .cart-fav-box .favme {
+    margin-top = 15px;
     cursor: pointer;
     color: #ccc;
     font-size: 24px;
