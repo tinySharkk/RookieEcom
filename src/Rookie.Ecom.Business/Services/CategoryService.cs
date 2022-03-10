@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Rookie.Ecom.Business.Services
 {
@@ -25,6 +26,10 @@ namespace Rookie.Ecom.Business.Services
 
         public async Task<CategoryDto> AddAsync(CategoryDto categoryDto)
         {
+            Regex getImageIdFromGoogleDrive = new Regex(@"\/d\/(.+)\/");
+            Match id = getImageIdFromGoogleDrive.Match(categoryDto.Image);
+            categoryDto.Image = id.ToString().TrimStart('/', 'd').Trim('/');
+
             var category = _mapper.Map<Category>(categoryDto);
             var item = await _baseRepository.AddAsync(category);
             return _mapper.Map<CategoryDto>(item);
@@ -38,6 +43,14 @@ namespace Rookie.Ecom.Business.Services
         public async Task UpdateAsync(CategoryDto categoryDto)
         {
             var category = _mapper.Map<Category>(categoryDto);
+
+            Regex getImageIdFromGoogleDrive = new Regex(@"\/d\/(.+)\/");
+            Match imageId = getImageIdFromGoogleDrive.Match(categoryDto.Image);
+
+            category.Image = imageId.ToString().TrimStart('/', 'd').Trim('/');
+
+            category.UpdatedDate = DateTime.Now;
+
             await _baseRepository.UpdateAsync(category);
         }
 
@@ -92,6 +105,12 @@ namespace Rookie.Ecom.Business.Services
             var category = await _baseRepository.GetByIdAsync(id);
 
             _mapper.Map(updateCategoryDto, category);
+
+            Regex getImageIdFromGoogleDrive = new Regex(@"\/d\/(.+)\/");
+            Match imageId = getImageIdFromGoogleDrive.Match(updateCategoryDto.Image);
+
+            category.Image = imageId.ToString().TrimStart('/', 'd').Trim('/');
+
             category.UpdatedDate = DateTime.Now;
 
             await _baseRepository.UpdateAsync(category);

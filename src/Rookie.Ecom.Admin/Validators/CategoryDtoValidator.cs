@@ -29,12 +29,13 @@ namespace Rookie.Ecom.Admin.Validators
                .When(m => !string.IsNullOrWhiteSpace(m.Desc));
 
             RuleFor(x => x).MustAsync(
-             async (dto, cancellation) =>
-             {
-                 var exit = await categoryService.GetByNameAsync(dto.Name);
-                 return exit == null || exit.Id != dto.Id;
-             }
-          ).WithMessage("Duplicate record");
+ async (dto, cancellation) =>
+ {
+     var exit = await categoryService.GetByNameAsync(dto.Name);
+     return exit == null || exit.Id == dto.Id;
+ }
+).WithMessage("Duplicate record")
+.When(m => !string.IsNullOrWhiteSpace(m.Name));
         }
     }
 }

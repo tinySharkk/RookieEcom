@@ -12,6 +12,7 @@ namespace Rookie.Ecom.DataAccessor.Entities
         [Required]
         [StringLength(maximumLength: 100)]
         public string Desc { get; set; }
+        public string Image { get; set; }
 
         public ICollection<Product> Products { get; set; }
     }

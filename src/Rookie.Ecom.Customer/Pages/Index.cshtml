@@ -31,16 +31,19 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="row">
-                <!-- Single Catagory -->
+
+                @foreach (var cate in Model.categorys){
+                    <!-- Single Catagory -->
                 <div class="col-12 col-sm-6 col-md-4">
-                    <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(img/bg-img/bg-2.jpg);">
+                    <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(https://drive.google.com/uc?export=view&id=@(cate.Image));">
                         <div class="catagory-content">
-                            <a href="#">Clothing</a>
+                            <a asp-page = "/Product" asp-route-categoryId="@cate.Id" asp-route-pageNo="1">@cate.Name</a>
                         </div>
                     </div>
                     <p class="product-price"></p>
                 </div>
-                <!-- Single Catagory -->
+                }
+@*                <!-- Single Catagory -->
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(img/bg-img/bg-3.jpg);">
                         <div class="catagory-content">
@@ -78,7 +81,7 @@
                         </div>
                     </div>
                     <p class="product-price"></p>
-                </div>
+                </div>*@
                 </div>
             </div>
         </div>
@@ -102,18 +105,20 @@
                 <div class="col-12">
                     <div class="popular-products-slides owl-carousel">
 
+                        @foreach(var featureProduct in Model.products)
+                        {
                         <!-- Single Product -->
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="img/product-img/product-1.jpg" alt=""> 
+                                <img src="https://drive.google.com/uc?export=view&id=@(Model.productImage(featureProduct.Id).Result)" alt=""> 
                             </div>
                             <!-- Product Description -->
                             <div class="product-description">
-                                <a href="single-product-details.html">
-                                    <h6>Knot Front Mini Dress</h6>
+                                <a asp-page = "/ProductDetail" asp-route-productId = "@featureProduct.Id">
+                                    <h6>@featureProduct.Name</h6>
                                 </a>
-                                <p class="product-price">$80.00</p>
+                                <p class="product-price">@featureProduct.Price</p>
 
                                 <!-- Hover Content -->
                                 <div class="hover-content">
@@ -124,8 +129,8 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Single Product -->
+                        }
+                        @*<!-- Single Product -->
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
@@ -225,7 +230,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             </div>

@@ -57,6 +57,15 @@ namespace Rookie.Ecom.Business.Services
             throw new NotImplementedException();
         }
 
+        public async Task<IEnumerable<ProductInfoDto>> GetTopFeatureAsync(int limit)
+        {
+            var products = await _baseRepository.GetAllAsync();
+            products = products.Where(x => x.IsFeatured == true).Take(limit);
+
+
+            return _mapper.Map<List<ProductInfoDto>>(products);
+        }
+
         public async Task<PagedResponseModel<ProductDto>> PagedQueryAsync(string? name, int page, int limit)
         {
             var query = _baseRepository.Entities;

@@ -1,10 +1,10 @@
-﻿{
+{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:22137",
-      "sslPort": 44332
+      "applicationUrl": "http://localhost:56777/",
+      "sslPort": 44377
     }
   },
   "profiles": {
@@ -18,13 +18,13 @@
     },
     "Rookie.Ecom.Customer": {
       "commandName": "Project",
-      "dotnetRunMessages": "true",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5022;http://localhost:5020",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
-      }
+      },
+      "applicationUrl": "https://localhost:5022;http://localhost:5020",
+      "dotnetRunMessages": "true"
     }
   }
 }

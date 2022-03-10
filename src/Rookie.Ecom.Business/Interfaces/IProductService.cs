@@ -10,6 +10,8 @@ namespace Rookie.Ecom.Business.Interfaces
     {
         Task<IEnumerable<ProductInfoDto>> GetAllAsync();
 
+        Task<IEnumerable<ProductInfoDto>> GetTopFeatureAsync(int limit);
+
         Task<PagedResponseModel<ProductDto>> PagedQueryAsync(string? name, int page, int limit);
 
         Task<PagedResponseModel<ProductDto>> PagedQueryByCategoryAsync(Guid? category, int page, int limit);

@@ -8,6 +8,8 @@ namespace Rookie.Ecom.Contracts.Dtos
 
         public string Desc { get; set; }
 
+        public string Image { get; set; }
+
     }
 
     public class CategoryInfoDto : BaseDto
@@ -15,6 +17,7 @@ namespace Rookie.Ecom.Contracts.Dtos
         public string Name { get; set; }
 
         public string Desc { get; set; }
+        public string Image { get; set; }
     }
 
     public class UpdateCategoryDto
@@ -22,5 +25,6 @@ namespace Rookie.Ecom.Contracts.Dtos
         public string Name { get; set; }
 
         public string Desc { get; set; }
+        public string Image { get; set; }
     }
 }

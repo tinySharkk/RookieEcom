@@ -1481,16 +1481,16 @@ img {
     margin-bottom = 12px;
 }
 
-    .single_product_details_area .single_product_desc .product-quantity .pro-qty {
-        height: 56px;
-        width: 173px;
-        border: 2px solid #EEF1F2;
-        border-radius: 50px;
-        text-align: center;
-        display: inline-block;
-        margin-top = 10px;
-        margin-bottom = 12px;
-    }
+.single_product_details_area .single_product_desc .probg-imgduct-quantity .pro-qty {
+    height: 56px;
+    width: 173px;
+    border: 2px solid #EEF1F2;
+    border-radius: 50px;
+    text-align: center;
+    display: inline-block;
+    margin-top = 10px;
+    margin-bottom = 12px;
+}
 
         .single_product_details_area .single_product_desc .product-quantity .pro-qty input {
             width: 50px;
