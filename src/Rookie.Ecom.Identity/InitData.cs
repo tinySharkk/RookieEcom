@@ -88,7 +88,7 @@ namespace Rookie.Ecom.Identity
                 },
                 new Client
                 {
-                    ClientName = "Rookie.Ecom.Web",
+                    ClientName = "Rookie.Ecom.Admin",
                     ClientId = "rookieecom",
                     AllowedGrantTypes = GrantTypes.Implicit,
                     RedirectUris = new List<string>()
@@ -112,6 +112,35 @@ namespace Rookie.Ecom.Identity
                     //AllowedCorsOrigins = new List<string>
                     //{
                     //    "https://localhost:5011/"
+                    //},
+                    AllowAccessTokensViaBrowser = true
+                },
+                new Client
+                {
+                    ClientName = "Rookie.Ecom.Customer",
+                    ClientId = "rookieecomcustomer",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    RedirectUris = new List<string>()
+                    {
+                        "https://localhost:5022/signin-oidc"
+                    },
+                    PostLogoutRedirectUris = new List<string>()
+                    {
+                        "https://localhost:5022/signout-callback-oidc"
+                    },
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "roles"
+                    },
+                    ClientSecrets =
+                    {
+                        new Secret("rookieecom".Sha256())
+                    },
+                    //AllowedCorsOrigins = new List<string>
+                    //{
+                    //    "https://localhost:5022/"
                     //},
                     AllowAccessTokensViaBrowser = true
                 }

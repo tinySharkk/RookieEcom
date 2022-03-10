@@ -1476,9 +1476,15 @@ img {
 
 .single_product_details_area .single_product_desc .product-quantity {
     display: inline-block;
-    margin-right: 4px;
-    margin-top = 10px;
-    margin-bottom = 12px;
+    margin-left: 0px;
+    border: 2px solid #EEF1F2;
+    border-radius: 50px;
+    text-align: center;
+    display: inline-block;
+    height: 56px;
+    width: 150px;
+    margin-bottom: 15px;
+    /*//margin-right: 20px;*/
 }
 
 .single_product_details_area .single_product_desc .probg-imgduct-quantity .pro-qty {
@@ -1488,8 +1494,6 @@ img {
     border-radius: 50px;
     text-align: center;
     display: inline-block;
-    margin-top = 10px;
-    margin-bottom = 12px;
 }
 
         .single_product_details_area .single_product_desc .product-quantity .pro-qty input {

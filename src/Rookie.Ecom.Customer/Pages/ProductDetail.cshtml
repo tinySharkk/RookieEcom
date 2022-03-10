@@ -8,8 +8,19 @@
     <!-- Single Product Thumb -->
     <div class="single_product_thumb clearfix">
         <div class="product_thumbnail_slides owl-carousel">
-            @foreach(var image in Model.productImages ){
+           @* @foreach(var image in Model.productImages ){
+            <img src="https://drive.google.com/uc?export=view&id=@(image.ImageUrl)" alt="">}*@
+            @if(Model.productImages.Count() == 1)
+            {      
+                foreach(var image in Model.productImages ){
+                <img src="https://drive.google.com/uc?export=view&id=@(image.ImageUrl)" alt="">
+                <img src="https://drive.google.com/uc?export=view&id=@(image.ImageUrl)" alt="">}
+            }
+            else
+            {
+                foreach(var image in Model.productImages ){
             <img src="https://drive.google.com/uc?export=view&id=@(image.ImageUrl)" alt="">}
+            }
         </div>
     </div>
 

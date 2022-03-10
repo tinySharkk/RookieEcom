@@ -14,6 +14,11 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Rookie.Ecom.Customer.Filters;
 using System.Reflection;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Rookie.Ecom.Customer
 {
@@ -29,6 +34,42 @@ namespace Rookie.Ecom.Customer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+            })
+           .AddCookie("Cookies")
+           .AddOpenIdConnect("oidc", options =>
+           {
+
+               options.SignInScheme = "Cookies";
+               options.Authority = "https://localhost:5001/";
+               //options.RequireHttpsMetadata = true;
+               options.CallbackPath = "/signin-oidc";
+
+               options.ClientId = "rookieecomcustomer";
+               options.ClientSecret = "rookieecomcustomersecret";
+               options.ResponseType = "id_token token";
+
+               options.SaveTokens = true;
+
+
+               options.Scope.Clear();
+               options.Scope.Add("openid");
+               options.Scope.Add("profile");
+               options.Scope.Add("roles");
+               options.ClaimActions.MapUniqueJsonKey("role", "role");
+               options.GetClaimsFromUserInfoEndpoint = true;
+               options.TokenValidationParameters = new TokenValidationParameters
+               {
+                   RoleClaimType = "role",
+                   NameClaimType = "given_name" + "family_name"
+               };
+           });
+
             services.AddControllersWithViews(x =>
             {
                 x.Filters.Add(typeof(ValidatorActionFilter));
@@ -51,7 +92,8 @@ namespace Rookie.Ecom.Customer
             services.AddBusinessLayer(Configuration);
             services.AddSwaggerGen();
             services.AddRazorPages()
-                .AddRazorPagesOptions(options => {
+                .AddRazorPagesOptions(options =>
+                {
                     options.RootDirectory = "/Pages";
                     options.Conventions.AddPageRoute("/Home/Index", "");
                 });
@@ -75,7 +117,7 @@ namespace Rookie.Ecom.Customer
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

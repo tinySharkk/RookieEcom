@@ -44,6 +44,9 @@ namespace Rookie.Ecom.Identity
             app.UseStaticFiles();
             app.UseRouting();
 
+            app.UseAuthorization();
+            app.UseIdentityServer();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
