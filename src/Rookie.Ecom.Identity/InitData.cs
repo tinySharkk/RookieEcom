@@ -64,7 +64,7 @@ namespace Rookie.Ecom.Identity
                     AllowedGrantTypes = GrantTypes.Implicit,
                     RedirectUris = new List<string>()
                     {
-                        "https://localhost:5001/callback"
+                        "https://localhost:5001/signin-oidc"
                     },
                     PostLogoutRedirectUris = new List<string>()
                     {
@@ -136,7 +136,7 @@ namespace Rookie.Ecom.Identity
                     },
                     ClientSecrets =
                     {
-                        new Secret("rookieecom".Sha256())
+                        new Secret("rookieecomcustomersecret".Sha256())
                     },
                     //AllowedCorsOrigins = new List<string>
                     //{

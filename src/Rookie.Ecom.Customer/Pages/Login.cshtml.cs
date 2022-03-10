@@ -9,11 +9,7 @@ namespace Rookie.Ecom.Customer.Pages
     {
         public IActionResult OnGet()
         {
-            return Redirect("/");
-        }
-        public IActionResult OnPost()
-        {
-            return Redirect("/");
+            return Redirect("/Index");
         }
     }
 }
