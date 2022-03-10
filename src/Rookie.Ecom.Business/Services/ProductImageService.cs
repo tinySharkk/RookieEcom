@@ -49,11 +49,9 @@ namespace Rookie.Ecom.Business.Services
         public async Task<IEnumerable<ProductImageInfoDto>> GetAllByProductIdAsync(Guid productId)
         {
 
-
             var allImages = await _baseRepository.GetAllAsync();
             var images = allImages.Where(x => x.ProductId == productId);
             
-
             return _mapper.Map<List<ProductImageInfoDto>>(images);
         }
 

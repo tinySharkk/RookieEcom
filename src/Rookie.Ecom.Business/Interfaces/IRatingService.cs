@@ -17,7 +17,7 @@ namespace Rookie.Ecom.Business.Interfaces
 
         Task<RatingInfoDto> GetByUserIdAsync(Guid userId);
 
-        Task<RatingInfoDto> GetByProductId(Guid productId);
+        Task<IEnumerable<RatingInfoDto>> GetByProductId(Guid productId);
 
         Task<RatingInfoDto> GetByStar(int star);
 

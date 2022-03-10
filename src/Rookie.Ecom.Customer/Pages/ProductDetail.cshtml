@@ -31,11 +31,23 @@
         </a>
 
         <div class="rating">
+            @if(Model.productRatings.Count() == 0)
+            {
+                <p class="product-desc"> This product have no rating yet</p>
+            }
+            else
+            {
+                for(int i= 0; i< (int)Model.ratingStar; i++)
+                {
+                    <i class="fa fa-star"></i>
+                }
+                <a>( @Model.ratingStar )</a>
+            }
+@*            <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>*@
         </div>
         <p class="product-price"> $ @(Model.product.Price)</p>
         <p class="product-desc"> @(Model.product.Desc)</p>

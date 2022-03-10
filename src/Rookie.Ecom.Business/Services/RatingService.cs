@@ -47,9 +47,12 @@ namespace Rookie.Ecom.Business.Services
             return _mapper.Map<RatingInfoDto>(rating);
         }
 
-        public async Task<RatingInfoDto> GetByProductId(Guid productId)
+        public async Task<IEnumerable<RatingInfoDto>> GetByProductId(Guid productId)
         {
-            throw new NotImplementedException();
+            var allRate = await _baseRepository.GetAllAsync();
+            var rates = allRate.Where(x => x.ProductId == productId);
+
+            return _mapper.Map<List<RatingInfoDto>>(rates);
         }
 
         public async Task<RatingInfoDto> GetByStar(int star)
