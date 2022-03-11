@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import Home from './components/Home';
 import Category from './components/Category';
 import Product from './components/Product';
+import ProductImage from './components/ProductImage';
 import Counter from './components/Counter';
 import FetchData from './components/FetchData';
 
@@ -16,6 +17,7 @@ export default () => (
         <Route path="/counter" component={Counter} />
         <Route path="/category/:page?" component={Category} />
         <Route path="/product/:page?" component={Product} />
+        <Route path="/productimage/:page?" component={ProductImage} />
         <Route path="/fetch-data/:startDateIndex?" component={FetchData} />
 
         <Route path="/profile" component={ProfilePage} />

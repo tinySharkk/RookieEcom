@@ -16,7 +16,9 @@ namespace Rookie.Ecom.Business
 
             //Address
             CreateMap<AddressDto, Address>();
-            CreateMap<AddressInfoDto, Address>();
+            CreateMap<AddressInfoDto, Address>()
+                .ForMember(d => d.User, t => t.Ignore())
+                .ForMember(d => d.City, t => t.Ignore());
             CreateMap<AddAddressDto, Address>()
                 .ForMember(d => d.User, t => t.Ignore());
             CreateMap<UpdateAddressDto, Address>()

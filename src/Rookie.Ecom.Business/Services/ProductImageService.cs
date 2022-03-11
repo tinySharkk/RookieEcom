@@ -69,10 +69,26 @@ namespace Rookie.Ecom.Business.Services
             return _mapper.Map<ProductImageInfoDto>(firstImage);
         }
 
-       /* public async Task<PagedResponseModel<ProductImageInfoDto>> PagedQueryAsync(string name, int page, int limit)
+        public async Task<PagedResponseModel<ProductImageInfoDto>> PagedQueryAsync(string name, int page, int limit)
         {
-            throw new NotImplementedException();
-        }*/
+            var query = _baseRepository.Entities;
+
+            query = query.Where(x => string.IsNullOrEmpty(name) || x.Title.Contains(name));
+
+            query = query.OrderBy(x => x.Title);
+
+            var assets = await query
+                .AsNoTracking()
+                .PaginateAsync(page, limit);
+
+            return new PagedResponseModel<ProductImageInfoDto>
+            {
+                CurrentPage = assets.CurrentPage,
+                TotalPages = assets.TotalPages,
+                TotalItems = assets.TotalItems,
+                Items = _mapper.Map<IEnumerable<ProductImageInfoDto>>(assets.Items)
+            };
+        }
 
         public async Task UpdateAsync(ProductImageInfoDto productImageInfoDto)
         {

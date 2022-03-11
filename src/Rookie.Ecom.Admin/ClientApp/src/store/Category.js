@@ -10,7 +10,6 @@ export const actionCreators = {
         }
 
         dispatch({ type: requestCategoryType, page });
-
         const url = `api/Category/find?page=${page}`;
         const response = await fetch(url);
         const data = await response.json();

@@ -1,10 +1,5 @@
 import React from 'react';
 import {
-    Collapse,
-    Container,
-    Navbar,
-    NavbarBrand,
-    NavbarToggler,
     NavItem,
     NavLink,
     Nav
@@ -12,8 +7,6 @@ import {
 import { Link } from 'react-router-dom';
 import './SideBar.css';
 import classNames from "classnames";
-/*import SubMenu from "./SubMenu.js";*/
-
 import { connect } from 'react-redux';
 
 class SideBar extends React.Component {
@@ -42,31 +35,34 @@ class SideBar extends React.Component {
                 </div>
                 <div className="side-menu">
                     <Nav vertical className="list-unstyled pb-3">
-                        {/*<SubMenu title="Home" items={submenus[0]} />*/}
                         <NavItem>
                             <NavLink tag={Link} to={"/"}>
                                 Home
                             </NavLink>
-                        </NavItem>
-                        {/*<SubMenu title="Pages" items={submenus[1]} />*/}
+                        </NavItem>             
                         <NavItem>
                             <NavLink tag={Link} to="/category">
-                                Category
+                               View Category
                             </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to="/product">
-                                Product
+                               View Product
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to="/productimage">
+                                View Product Image
                             </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to="/counter">
-                                Counter
+                               View Counter
                             </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to="/fetch-data">
-                                Fetch data
+                              View Fetch data
                             </NavLink>
                         </NavItem>
                     </Nav>
@@ -88,33 +84,6 @@ function mapDispatchToProps(dispatch) {
         dispatch
     };
 }
-
-const submenus = [
-    [
-        {
-            title: "Home 1",
-            target: "Home-1",
-        },
-        {
-            title: "Home 2",
-            target: "Home-2",
-        },
-        {
-            itle: "Home 3",
-            target: "Home-3",
-        },
-    ],
-    [
-        {
-            title: "Page 1",
-            target: "Page-1",
-        },
-        {
-            title: "Page 2",
-            target: "Page-2",
-        },
-    ],
-];
 
 
 export default connect(
