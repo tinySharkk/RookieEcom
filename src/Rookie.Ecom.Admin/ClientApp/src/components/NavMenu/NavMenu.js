@@ -11,7 +11,7 @@ import {
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 
-import userManager from '../utils/userManager';
+import userManager from '../../utils/userManager';
 import { connect } from 'react-redux';
 
 class NavMenu extends React.Component {
@@ -52,7 +52,7 @@ class NavMenu extends React.Component {
                     <Container>
                         <NavbarBrand tag={Link} to="/">
                             Rookie.Ecom.Admin
-            </NavbarBrand>
+                        </NavbarBrand>
                         <NavbarToggler onClick={this.toggle} className="mr-2" />
                         <Collapse
                             className="d-sm-inline-flex flex-sm-row-reverse"
@@ -60,27 +60,6 @@ class NavMenu extends React.Component {
                             navbar
                         >
                             <ul className="navbar-nav flex-grow">
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/">
-                                        Home
-                  </NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/category">
-                                        Category
-                  </NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/counter">
-                                        Counter
-                  </NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/fetch-data">
-                                        Fetch data
-                  </NavLink>
-                                </NavItem>
-
                                 {isAuthenticated ? (
                                     <NavItem>
                                         <NavLink tag={Link} className="text-primary" to="/profile">
