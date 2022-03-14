@@ -11,6 +11,11 @@ using System.Reflection;
 using System.Linq;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
+using Microsoft.AspNetCore.Identity;
+using IdentityServerHost.Quickstart.UI;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Rookie.Ecom.Identity.Data;
+using Rookie.Ecom.Identity.Data.Entities;
 
 namespace Rookie.Ecom.Identity
 {
@@ -36,6 +41,11 @@ namespace Rookie.Ecom.Identity
 
             });
 
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+               .AddEntityFrameworkStores<ApplicationDbContext>()
+               .AddDefaultTokenProviders();
+
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigins",
@@ -52,6 +62,7 @@ namespace Rookie.Ecom.Identity
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
                 .AddTestUsers(InitData.GetUsers())
+                .AddAspNetIdentity<ApplicationUser>()
                 .AddConfigurationStore(options =>
                 {
                     options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
