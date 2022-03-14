@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using Rookie.Ecom.Identity.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 
 namespace IdentityServerHost.Quickstart.UI
 {
@@ -218,6 +219,8 @@ namespace IdentityServerHost.Quickstart.UI
             // build a model so the logout page knows what to display
             var vm = await BuildLogoutViewModelAsync(logoutId);
 
+            _signInManager.SignOutAsync();
+
             if (vm.ShowLogoutPrompt == false)
             {
                 // if the request for logout was properly authenticated from IdentityServer, then
@@ -284,15 +287,27 @@ namespace IdentityServerHost.Quickstart.UI
             {
                 throw new Exception(result.Errors.First().Description);
             }
+            else
+            {
+                var resultClaim = await _userManager.AddClaimsAsync(user, new List<Claim>
+                {
+                    new Claim("UserId",user.Id),
+                    new Claim("UserName",user.UserName)
+                });
+                if (!resultClaim.Succeeded)
+                {
+                    throw new Exception(result.Errors.First().Description);
+                }
+            }
 
-            result = await _userManager.AddClaimsAsync(user, new Claim[]{
-                            new Claim(JwtClaimTypes.Email, model.Email)
-                        });
 
+
+            //result = await _userManager.
+/*
             if (!result.Succeeded)
             {
                 throw new Exception(result.Errors.First().Description);
-            }
+            }*/
 
             return View("RegistrationSuccess");
         }

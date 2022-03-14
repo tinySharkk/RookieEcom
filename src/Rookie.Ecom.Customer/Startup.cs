@@ -62,11 +62,14 @@ namespace Rookie.Ecom.Customer
                options.Scope.Add("profile");
                options.Scope.Add("roles");
                options.ClaimActions.MapUniqueJsonKey("role", "role");
+               options.ClaimActions.MapUniqueJsonKey("UserName", "UserName");
+               options.ClaimActions.MapUniqueJsonKey("UserId", "UserId");
                options.GetClaimsFromUserInfoEndpoint = true;
                options.TokenValidationParameters = new TokenValidationParameters
                {
                    RoleClaimType = "role",
-                   NameClaimType = "given_name" + "family_name"
+                   NameClaimType = "UserName",
+                   
                };
            });
 

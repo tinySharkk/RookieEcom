@@ -92,7 +92,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <div class="user-login-info">
-                        <a>Hell0 @User.Claims.Where(x => x.Type == "given_name").FirstOrDefault().Value</a>
+                        <a>Hell0 @*@User.Claims.Where(x => x.Type == "UserName").FirstOrDefault().Value*@</a>
                     </div>
                     <div class="user-login-info">
                         <a asp-page ="/Logout" class="nav-item nav-link">LogOut</a>
@@ -101,10 +101,7 @@
                 else
                 {
                     <div class="user-login-info">
-                        <a asp-page ="/Login" class="nav-item nav-link">Login</a>
-                    </div>
-                    <div class="user-login-info">
-                        <a asp-page ="" class="nav-item nav-link">Register</a>
+                        <a asp-page ="/Login" class="nav-item nav-link">Login/Register</a>
                     </div>
                 }
 
