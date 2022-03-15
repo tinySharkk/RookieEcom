@@ -61,6 +61,8 @@ namespace Rookie.Ecom.Customer
                options.Scope.Add("openid");
                options.Scope.Add("profile");
                options.Scope.Add("roles");
+               options.Scope.Add("UserNames");
+               options.Scope.Add("UserIds");
                options.ClaimActions.MapUniqueJsonKey("role", "role");
                options.ClaimActions.MapUniqueJsonKey("UserName", "UserName");
                options.ClaimActions.MapUniqueJsonKey("UserId", "UserId");

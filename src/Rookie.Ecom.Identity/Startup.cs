@@ -100,7 +100,7 @@ namespace Rookie.Ecom.Identity
             });
         }
 
-        /*private void InitializeDatabase(IApplicationBuilder app)
+        private void InitializeDatabase(IApplicationBuilder app)
         {
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
@@ -110,7 +110,7 @@ namespace Rookie.Ecom.Identity
                 context.Database.Migrate();
                 if (!context.Clients.Any())
                 {
-                    foreach (var client in Config.Clients)
+                    foreach (var client in InitData.GetClients())
                     {
                         context.Clients.Add(client.ToEntity());
                     }
@@ -118,23 +118,23 @@ namespace Rookie.Ecom.Identity
                 }
 
                 if (!context.IdentityResources.Any())
-                {
-                    foreach (var resource in Config.Ids)
+                {   
+                    foreach (var resource in InitData.GetIdentityResources())
                     {
                         context.IdentityResources.Add(resource.ToEntity());
                     }
                     context.SaveChanges();
                 }
 
-                if (!context.ApiResources.Any())
+                /*if (!context.ApiResources.Any())
                 {
                     foreach (var resource in Config.Apis)
                     {
                         context.ApiResources.Add(resource.ToEntity());
                     }
                     context.SaveChanges();
-                }
+                }*/
             }
-        }*/
+        }
     }
 }

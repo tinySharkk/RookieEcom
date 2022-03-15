@@ -178,8 +178,42 @@ namespace IdentityServerHost.Quickstart.UI
 
                 if (result.Succeeded)
                 {
+                    var user = await _userManager.FindByNameAsync(model.Username);
+
+                    await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id, user.UserName, clientId: context?.Client.ClientId));
+
+                    // only set explicit expiration here if user chooses "remember me". 
+                    // otherwise we rely upon expiration configured in cookie middleware.
+                    AuthenticationProperties props = null;
+                    if (AccountOptions.AllowRememberLogin && model.RememberLogin)
+                    {
+                        props = new AuthenticationProperties
+                        {
+                            IsPersistent = true,
+                            ExpiresUtc = DateTimeOffset.UtcNow.Add(AccountOptions.RememberMeLoginDuration)
+                        };
+                    };
+
+                    // issue authentication cookie with subject ID and username, claim
+
+                    var userClaims = await _userManager.GetClaimsAsync(user);
+
+                    var isuser = new IdentityServerUser(user.Id)
+                    {
+                        DisplayName = userClaims.Where(x => x.Type == "UserName").FirstOrDefault().Value,
+                        AdditionalClaims = userClaims
+                    };
+
+                    await HttpContext.SignInAsync(isuser, props);
+
                     if (context != null)
                     {
+                        /*if (context.IsNativeClient())
+                        {
+                            // The client is native, so this change in how to
+                            // return the response is for better UX for the end user.
+                            return this.LoadingPage("Redirect", model.ReturnUrl);
+                        }*/
                         // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
                         return Redirect(model.ReturnUrl);
                     }
@@ -200,7 +234,7 @@ namespace IdentityServerHost.Quickstart.UI
                     }
                 }
 
-                //await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials", clientId:context?.Client.ClientId));
+                await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials", clientId:context?.Client.ClientId));
                 ModelState.AddModelError(string.Empty, AccountOptions.InvalidCredentialsErrorMessage);
             }
 
@@ -276,7 +310,7 @@ namespace IdentityServerHost.Quickstart.UI
         {
             var user = new ApplicationUser
             {
-                UserName = model.Email,
+                UserName = model.UserName,
                 Email = model.Email,
                 EmailConfirmed = true,
             };
@@ -292,7 +326,8 @@ namespace IdentityServerHost.Quickstart.UI
                 var resultClaim = await _userManager.AddClaimsAsync(user, new List<Claim>
                 {
                     new Claim("UserId",user.Id),
-                    new Claim("UserName",user.UserName)
+                    new Claim("UserName",user.UserName),
+                    new Claim("role", "User")
                 });
                 if (!resultClaim.Succeeded)
                 {

@@ -92,7 +92,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <div class="user-login-info">
-                        <a>Hell0 @*@User.Claims.Where(x => x.Type == "UserName").FirstOrDefault().Value*@</a>
+                        <a>Hell0 @Context.User.Claims.Where(x=>x.Type == "UserName").SingleOrDefault().Value</a>
                     </div>
                     <div class="user-login-info">
                         <a asp-page ="/Logout" class="nav-item nav-link">LogOut</a>
@@ -108,7 +108,7 @@
                 @* @if (User.Claims.Any())
                     {
                     <div class="user-login-info">
-                    <a href="#">@User.Claims.Where(x => x.Type == "name").FirstOrDefault().Value</a>
+                    <a href="#">@Context.User.Claims.Where(x=>x.Type == "UserName").SingleOrDefault().Value</a>
                     </div>
                     }
                     else
@@ -120,7 +120,7 @@
 
                 <!-- Cart Area -->
                 <div class="cart-area">
-                    <a asp-area="" asp-page="/Cart" id="essenceCartBtn"><img src="img/core-img/bag.svg" alt=""> <span>3</span></a>
+                    <a asp-area="" asp-page="/Cart" id="essenceCartBtn"><img src="img/core-img/bag.svg" alt=""></a>
                 </div>
             </div>
 

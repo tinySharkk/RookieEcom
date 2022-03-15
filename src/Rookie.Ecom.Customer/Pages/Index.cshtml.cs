@@ -18,13 +18,15 @@ namespace Rookie.Ecom.Customer.Pages
         private readonly ICategoryService _categoryService;
         private readonly IProductService _productService;
         private readonly IProductImageService _productImageService;
+        private readonly IUserService _userService;
 
-        public IndexModel(ILogger<IndexModel> logger, ICategoryService categoryService, IProductService productService, IProductImageService productImageService)
+        public IndexModel(ILogger<IndexModel> logger, ICategoryService categoryService, IProductService productService, IProductImageService productImageService, IUserService userService)
         {
             _logger = logger;
             _categoryService = categoryService;
             _productService = productService;
-            _productImageService = productImageService;     
+            _productImageService = productImageService;
+            _userService = userService;
         }
 
         public IEnumerable<ProductInfoDto> products { get; set; }
@@ -36,13 +38,47 @@ namespace Rookie.Ecom.Customer.Pages
             prodImage = await _productImageService.GetByProductIdAsync(productId);
 
             return prodImage.ImageUrl;
-            //return "1eMRUN40mByRkFWBS2R1N1ZFFZGCrxdYx";
         }
 
-        public async Task OnGet()
+        public async Task<IActionResult> OnGet()
         {
             categorys = await _categoryService.GetAllAsync();
             products = await _productService.GetTopFeatureAsync(10);
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Claims.Where(x => x.Type == "UserId").SingleOrDefault().Value;
+
+                Guid id = Guid.Parse(userId);
+
+                var userExist = await _userService.GetByIdAsync(id);
+
+                if (userExist == null)
+                {
+                    return RedirectToPage("/Product");
+                }
+            }
+
+            return Page();
         }
+        /*public async Task<IActionResult> FirstLoginUserAsync()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Claims.Where(x => x.Type == "UserId").SingleOrDefault().Value;
+
+                Guid id = Guid.Parse(userId);
+
+                var ka = await _userService.GetByIdAsync(id);
+
+                if (ka == null)
+                {
+                    return RedirectToPage("/Product");
+                }
+            }
+
+            return Page();
+        }*/
+
     }
 }
