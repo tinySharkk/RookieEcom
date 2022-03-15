@@ -1306,6 +1306,7 @@ img {
     z-index: 100;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    margin-bottom: 80px;
 }
 
     .single_product_details_area .single_product_thumb,

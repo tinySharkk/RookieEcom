@@ -1930,6 +1930,27 @@ ol {
     padding-top: 0;
 }
 
+    .cart-total-page .checkout-form .rating {
+        margin-left: 25px;
+        margin-top:10px
+    }
+
+        .cart-total-page .checkout-form .rating a {
+            font-size: 20px;
+            margin-left: 4px;
+            font: normal normal normal 14px/1 FontAwesome;
+        }
+
+        .cart-total-page .checkout-form .rating .fas {
+            color: #FFD200;
+            font-size: 20px;
+        }
+        .cart-total-page .checkout-form .rating .far {
+            color: gray;
+            font-size: 20px;
+        } 
+
+
 .checkout-form h3 {
     color: #1e1e1e;
     margin-bottom: 75px;

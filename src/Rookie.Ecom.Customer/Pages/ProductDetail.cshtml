@@ -8,18 +8,22 @@
     <!-- Single Product Thumb -->
     <div class="single_product_thumb clearfix">
         <div class="product_thumbnail_slides owl-carousel">
-           @* @foreach(var image in Model.productImages ){
-            <img src="https://drive.google.com/uc?export=view&id=@(image.ImageUrl)" alt="">}*@
-            @if(Model.productImages.Count() == 1)
-            {      
-                foreach(var image in Model.productImages ){
-                <img src="https://drive.google.com/uc?export=view&id=@(image.ImageUrl)" alt="">
-                <img src="https://drive.google.com/uc?export=view&id=@(image.ImageUrl)" alt="">}
+            @* @foreach(var image in Model.productImages ){
+                <img src="https://drive.google.com/uc?export=view&id=@(image.ImageUrl)" alt="">}*@
+            @if (Model.productImages.Count() == 1)
+            {
+                foreach (var image in Model.productImages)
+                {
+                    <img src="https://drive.google.com/uc?export=view&id=@(image.ImageUrl)" alt="">
+                    <img src="https://drive.google.com/uc?export=view&id=@(image.ImageUrl)" alt="">
+                }
             }
             else
             {
-                foreach(var image in Model.productImages ){
-            <img src="https://drive.google.com/uc?export=view&id=@(image.ImageUrl)" alt="">}
+                foreach (var image in Model.productImages)
+                {
+                    <img src="https://drive.google.com/uc?export=view&id=@(image.ImageUrl)" alt="">
+                }
             }
         </div>
     </div>
@@ -31,23 +35,23 @@
         </a>
 
         <div class="rating">
-            @if(Model.productRatings.Count() == 0)
+            @if (Model.productRatings.Count() == 0)
             {
                 <p class="product-desc"> This product have no rating yet</p>
             }
             else
             {
-                for(int i= 0; i< (int)Model.ratingStar; i++)
+                for (int i = 0; i < (int)Model.ratingStar; i++)
                 {
                     <i class="fa fa-star"></i>
                 }
                 <a>( @Model.ratingStar )</a>
             }
-@*            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>*@
+            @*            <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>*@
         </div>
         <p class="product-price"> $ @(Model.product.Price)</p>
         <p class="product-desc"> @(Model.product.Desc)</p>
@@ -70,3 +74,51 @@
     </div>
 </section>
 <!-- ##### Single Product Details Area End ##### -->
+<section class="cart-total-page spad">
+        <form method="post" class="checkout-form">
+          @*  <div class="row">*@
+                <div class="col-lg-12">
+                    <h4>Your Rating</h4>
+                </div>
+                @*<div class="d-flex my-3">*@
+                    <div class="rating">
+                        <a type="radio" onclick="CRate(1)" class="ratingStar fas fa-star" value="1"></a>
+                        <a type="radio" onclick="CRate(2)" class="ratingStar fas fa-star" value="2"></a>
+                        <a type="radio" onclick="CRate(3)" class="ratingStar fas fa-star" value="3"></a>
+                        <a type="radio" onclick="CRate(4)" class="ratingStar fas fa-star" value="4"></a>
+                        <a type="radio" onclick="CRate(5)" class="ratingStar fas fa-star" value="5"></a>
+                    </div>
+                @*</div>*@
+                <div class="col-lg-12">
+                    @*<input name="Gender" value = "1" hidden></input>*@
+                    <div class="row">
+                        <div class="col-lg-8 form-group">
+                            @*<label>Leave a comment</label>*@
+                            <input name="Comment" type="text" class="form-control" placeholder="Leave a comment" style="margin-bottom: 0px; margin-top: 20px;" required>
+                        </div>
+                    </div>
+                </div>
+            @*</div>*@
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="payment-method">
+                        <button type="submit">Rate!</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+</section>
+
+@section scripts{
+<script>
+    $(".ratingStar").click(function () {
+        $(".ratingStar").addClass("far").removeClass("fas");
+
+        $(this).addClass("fas").removeClass("far");
+        $(this).prevAll(".ratingStar").addClass("fas").removeClass("far");
+    });
+    function CRate(r) {
+        $("#Rating").val(r);
+    }
+</script>
+ }
