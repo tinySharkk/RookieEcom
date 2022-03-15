@@ -55,7 +55,7 @@ namespace Rookie.Ecom.Customer.Pages
 
                 if (userExist == null)
                 {
-                    return RedirectToPage("/Product");
+                    return RedirectToPage("/UserAccount");
                 }
             }
 

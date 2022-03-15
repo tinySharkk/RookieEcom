@@ -1952,7 +1952,24 @@ ol {
     padding-bottom: 12px;
     border-bottom: 2px solid #E7EBED;
     color: #838383;
-    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 32px;
+}
+.checkout-form input[type=email] {
+    width: 100%;
+    border: 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #E7EBED;
+    color: #838383;
+    font-weight: 500;
+    margin-bottom: 32px;
+}
+.checkout-form input[type=tel] {
+    width: 100%;
+    border: 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #E7EBED;
+    color: #838383;
     font-weight: 500;
     margin-bottom: 32px;
 }
@@ -1962,7 +1979,6 @@ ol {
 }
 
     .checkout-form .cart-select.country-usa {
-        font-size: 16px;
         font-weight: 500;
     }
 

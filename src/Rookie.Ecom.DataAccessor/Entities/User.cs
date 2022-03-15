@@ -9,6 +9,7 @@ namespace Rookie.Ecom.DataAccessor.Entities
 {
     public class User : BaseEntity
     {
+        public static IEnumerable<object> Claims { get; set; }
         [Required]
         [StringLength(maximumLength: 50)]
         public string FirstName { get; set; }
