@@ -9,6 +9,8 @@ using Rookie.Ecom.Business.Interfaces;
 using Rookie.Ecom.Contracts;
 using Rookie.Ecom.Contracts.Dtos;
 using Microsoft.Extensions.Configuration;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Rookie.Ecom.Customer.Pages
 {
@@ -25,11 +27,18 @@ namespace Rookie.Ecom.Customer.Pages
             _ratingService = ratingService;
         }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string productId { get; set; }
+
         public ProductInfoDto product { get; set; }
         public IEnumerable<ProductImageInfoDto> productImages{ get; set; }
         public IEnumerable<RatingInfoDto> productRatings { get;set; }
 
+        public int rating =5;
+
         public float ratingStar;
+
+        //Guid? productId;
         public async Task OnGet(Guid productId)
         {
             product = await _productService.GetByIdAsync(productId);
@@ -40,6 +49,34 @@ namespace Rookie.Ecom.Customer.Pages
             {
                 ratingStar = productRatings.Average(x => x.Star);
             }
+
+            //this.productId = product.Id;
+            this.productId = productId.ToString();
+        }
+
+        [Authorize]
+        public async Task<IActionResult> OnPostRatingAsync(string Comment, Guid productId)
+        {
+
+            var userId = User.Claims.Where(x => x.Type == "UserId").SingleOrDefault().Value;
+
+            Guid id = Guid.Parse(userId);
+
+            var rating = new RatingInfoDto
+            {
+                UserId = id,
+                ProductId = productId,
+                Feedback = Comment,
+                Star = this.rating,
+                Id = Guid.NewGuid(),
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                CreatorId = id,
+                Pubished = true,
+            };
+            await _ratingService.AddAsync(rating);
+
+            return Page();
         }
     }
 }

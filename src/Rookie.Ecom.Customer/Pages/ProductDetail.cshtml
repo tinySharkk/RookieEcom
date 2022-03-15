@@ -74,39 +74,45 @@
     </div>
 </section>
 <!-- ##### Single Product Details Area End ##### -->
+
+
 <section class="cart-total-page spad">
-        <form method="post" class="checkout-form">
-          @*  <div class="row">*@
-                <div class="col-lg-12">
-                    <h4>Your Rating</h4>
-                </div>
-                @*<div class="d-flex my-3">*@
-                    <div class="rating">
-                        <a type="radio" onclick="CRate(1)" class="ratingStar fas fa-star" value="1"></a>
-                        <a type="radio" onclick="CRate(2)" class="ratingStar fas fa-star" value="2"></a>
-                        <a type="radio" onclick="CRate(3)" class="ratingStar fas fa-star" value="3"></a>
-                        <a type="radio" onclick="CRate(4)" class="ratingStar fas fa-star" value="4"></a>
-                        <a type="radio" onclick="CRate(5)" class="ratingStar fas fa-star" value="5"></a>
-                    </div>
-                @*</div>*@
-                <div class="col-lg-12">
-                    @*<input name="Gender" value = "1" hidden></input>*@
-                    <div class="row">
-                        <div class="col-lg-8 form-group">
-                            @*<label>Leave a comment</label>*@
-                            <input name="Comment" type="text" class="form-control" placeholder="Leave a comment" style="margin-bottom: 0px; margin-top: 20px;" required>
-                        </div>
-                    </div>
-                </div>
-            @*</div>*@
+    <form method="post" asp-controller="Rating" asp-action="Rating" class="checkout-form">
+        @*  <div class="row">*@
+        <div class="col-lg-12">
+            <h4>Your Rating</h4>
+        </div>
+        @*<div class="d-flex my-3">*@
+        <div class="rating">
+            <a type="radio" onclick="CRate(1)" class="ratingStar fas fa-star" value="1"></a>
+            <a type="radio" onclick="CRate(2)" class="ratingStar fas fa-star" value="2"></a>
+            <a type="radio" onclick="CRate(3)" class="ratingStar fas fa-star" value="3"></a>
+            <a type="radio" onclick="CRate(4)" class="ratingStar fas fa-star" value="4"></a>
+            <a type="radio" onclick="CRate(5)" class="ratingStar fas fa-star" value="5"></a>
+        </div>
+        @*</div>*@
+        <div class="col-lg-12">
+            @*<input name="Gender" value = "1" hidden></input>*@
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="payment-method">
-                        <button type="submit">Rate!</button>
-                    </div>
+                <div class="col-lg-8 form-group">
+                    @*<label>Leave a comment</label>*@
+                    <input name="Comment" type="text" class="form-control" placeholder="Leave a comment" style="margin-bottom: 0px; margin-top: 20px;" required>
                 </div>
             </div>
-        </form>
+        </div>
+
+        <input id="Rating" name="Rating" value="5" hidden/>
+        <input id ="ProductId" name="ProductId" value="@Model.productId" hidden/>
+
+        @*</div>*@
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="payment-method">
+                    <button type="submit">Rate!</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </section>
 
 @section scripts{
