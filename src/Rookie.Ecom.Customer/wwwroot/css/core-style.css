@@ -476,7 +476,6 @@ img {
 }
 
 .header_area .favourite-area a,
-.header_area .user-login-info a,
 .header_area .cart-area a {
     position: relative;
     z-index: 1;
@@ -491,14 +490,35 @@ img {
     line-height: 80px;
 }
 
+.header_area .user-login-info a {
+    position: relative;
+    z-index: 1;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 90px;
+    flex: 0 0 90px;
+    display: block;
+    text-align: center;
+    border-left: 1px solid #ebebeb;
+    height: 100%;
+    line-height: 80px;
+}
+
+
+
 @media only screen and (max-width: 767px) {
     .header_area .favourite-area a,
-    .header_area .user-login-info a,
     .header_area .cart-area a {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 50px;
         flex: 0 0 50px;
         width: 50px;
+        line-height: 40px;
+    }
+
+    .header_area .user-login-info a {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50px;
+        flex: 0 0 50px;
         line-height: 40px;
     }
 }

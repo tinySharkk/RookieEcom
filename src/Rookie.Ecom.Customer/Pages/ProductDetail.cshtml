@@ -101,8 +101,8 @@
             </div>
         </div>
 
-        <input id="Rating" name="Rating" value="5" hidden/>
-        <input id ="ProductId" name="ProductId" value="@Model.productId" hidden/>
+        <input id="Rating" name="Rating" value="5" hidden />
+        <input id="ProductId" name="ProductId" value="@Model.productId" hidden />
 
         @*</div>*@
         <div class="row">
@@ -128,3 +128,33 @@
     }
 </script>
  }
+
+
+
+<section class="cart-total-page spad">
+    <div class="checkout-form">
+    <div class="col-lg-12">
+        <h4>All Rating (@Model.productRatings.Count() rates)</h4>
+    </div>
+    @foreach (var rate in @Model.productRatings)
+    {
+        <div class="rating" style="margin-top: 20px;margin-left: 10px;">
+            @for (int i = 0; i < rate.Star; i++)
+            {
+                <a class="fas fa-star" style="font-size: 16px;"></a>
+            }
+        </div>
+        @*</div>*@
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-8 form-group">
+                    @*<label>Leave a comment</label>*@
+                    <p class="product-desc" style = "border-bottom: 2px solid #E7EBED; margin-top: 5px; padding-bottom: 12px;">@rate.Feedback</p>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+</section>
+
+

@@ -60,19 +60,8 @@
                     <div class="classynav">
                         <ul>
                             <li><a asp-area="" asp-page="/Index">Home</a></li>
-                            @*<li>
-                                <a href="#">Category</a>
-                                <ul class="dropdown">
-
-                                <li><a asp-page = "/Product/" asp-route-categoryId="@category.Id" asp-route-pageNo="1">Home</a></li>
-                                <li><a href="#">Shop</a></li>
-                                <li><a href="#">Product Details</a></li>
-                                <li><a href="#">Checkout</a></li>
-                                <li><a href="#">Blog</a></li>
-                                </ul>
-                                </li>*@
                             <li><a asp-area="" asp-page="/Product">Product</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a asp-area="" asp-page="">Contact</a></li>
                         </ul>
                     </div>
                     <!-- Nav End -->
@@ -92,7 +81,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <div class="user-login-info">
-                        <a>Hell0 @Context.User.Claims.Where(x=>x.Type == "UserName").SingleOrDefault().Value</a>
+                        <a>@Context.User.Claims.Where(x=>x.Type == "UserName").SingleOrDefault().Value</a>
                     </div>
                     <div class="user-login-info">
                         <a asp-page ="/Logout" class="nav-item nav-link">LogOut</a>

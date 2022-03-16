@@ -3,6 +3,12 @@
   <PropertyGroup>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Pages\Category\**" />
+    <Content Remove="Pages\Category\**" />
+    <EmbeddedResource Remove="Pages\Category\**" />
+    <None Remove="Pages\Category\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="9.5.1" />
@@ -22,10 +28,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Rookie.Ecom.Business\Rookie.Ecom.Business.csproj" />
     <ProjectReference Include="..\Rookie.Ecom.Contracts\Rookie.Ecom.Contracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Category\" />
   </ItemGroup>
 
 </Project>
