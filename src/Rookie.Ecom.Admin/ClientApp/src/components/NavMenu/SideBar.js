@@ -46,8 +46,28 @@ class SideBar extends React.Component {
                             </NavLink>
                         </NavItem>
                         <NavItem>
+                            <NavLink tag={Link} to="/addcategory">
+                                Add Category
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to="/updatecategory">
+                                Update Category
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
                             <NavLink tag={Link} to="/product">
                                View Product
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to="/addproduct">
+                                Add Product
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to="/updateproduct">
+                                Update Product
                             </NavLink>
                         </NavItem>
                         <NavItem>
@@ -56,6 +76,22 @@ class SideBar extends React.Component {
                             </NavLink>
                         </NavItem>
                         <NavItem>
+                            <NavLink tag={Link} to="/addproductimage">
+                                Add Product Image
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to="/updateproductimage">
+                                Update Product Image
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to="/user">
+                                View User
+                            </NavLink>
+                        </NavItem>
+
+                       {/* <NavItem>
                             <NavLink tag={Link} to="/counter">
                                View Counter
                             </NavLink>
@@ -64,7 +100,7 @@ class SideBar extends React.Component {
                             <NavLink tag={Link} to="/fetch-data">
                               View Fetch data
                             </NavLink>
-                        </NavItem>
+                        </NavItem>*/}
                     </Nav>
                 </div>
             </div>

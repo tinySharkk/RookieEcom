@@ -5,7 +5,7 @@ import { actionCreators } from '../store/Counter';
 
 const Counter = props => (
   <div>
-    <h1>Counter</h1>
+    <h1>Create Category</h1>
 
     <p>This is a simple example of a React component.</p>
 

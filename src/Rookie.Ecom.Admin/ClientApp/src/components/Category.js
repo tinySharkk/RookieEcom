@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -25,8 +26,7 @@ class Category extends Component {
     render() {
         return (
             <div>
-                <h1>Weather forecast</h1>
-                <p>This component demonstrates fetching data from the server and working with URL parameters.</p>
+                <h1>Category</h1>
                 {renderCategoryTable(this.props)}
                 {renderPagination(this.props)}
             </div>
@@ -43,6 +43,7 @@ function renderCategoryTable(props) {
                     <th>ID</th>
                     <th>Name</th>
                     <th>Desc</th>
+                    <th>ImageId</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,6 +52,7 @@ function renderCategoryTable(props) {
                         <td>{cat.id}</td>
                         <td>{cat.name}</td>
                         <td>{cat.desc}</td>
+                        <td>{cat.image}</td>
                     </tr>
                 )}
             </tbody>
@@ -59,8 +61,8 @@ function renderCategoryTable(props) {
 }
 
 function renderPagination(props) {
-    const prevStartDateIndex = (props.page || 0) - 3;
-    const nextStartDateIndex = (props.page || 0) + 3;
+    const prevStartDateIndex = (props.page || 0) - 1;
+    const nextStartDateIndex = (props.page || 0) + 1;
 
     return <p className='clearfix text-center'>
         <Link className='btn btn-default pull-left' to={`/category/${prevStartDateIndex}`}>Previous</Link>

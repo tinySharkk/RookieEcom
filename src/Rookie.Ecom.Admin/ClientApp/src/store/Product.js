@@ -1,5 +1,6 @@
 const requestProductType = 'REQUEST_PRODUCTS';
 const receiveProductType = 'RECEIVE_PRODUCTS';
+const updateProductType = 'UPDATE_PRODUCT'
 const initialState = { products: [], isLoading: false };
 
 export const actionCreators = {
@@ -17,6 +18,7 @@ export const actionCreators = {
         const products = data.items;
         dispatch({ type: receiveProductType, page, products });
     }
+
 };
 
 export const reducer = (state, action) => {

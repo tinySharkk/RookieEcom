@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actionCreators } from '../store/ProductImage';
 
+
 class ProductImage extends Component {
     componentDidMount() {
         // This method is called when the component is first added to the document
@@ -25,8 +26,7 @@ class ProductImage extends Component {
     render() {
         return (
             <div>
-                <h1>Weather forecast</h1>
-                <p>This component demonstrates fetching data from the server and working with URL parameters.</p>
+                <h1>Product Image</h1>
                 {renderProductImageTable(this.props)}
                 {renderPagination(this.props)}
             </div>
@@ -43,6 +43,7 @@ function renderProductImageTable(props) {
                     <th>ID</th>
                     <th>Title</th>
                     <th>ProductId</th>
+                    <th>ImageId</th>
                     <th>CreatedDate</th>
                     <th>UpdateDate</th>
                 </tr>
@@ -53,6 +54,7 @@ function renderProductImageTable(props) {
                         <td>{prod.id}</td>
                         <td>{prod.title}</td>
                         <td>{prod.productId}</td>
+                        <td>{prod.imageUrl}</td>
                         <td>{prod.createdDate}</td>
                         <td>{prod.updatedDate}</td>
                     </tr>
@@ -63,8 +65,8 @@ function renderProductImageTable(props) {
 }
 
 function renderPagination(props) {
-    const prevStartDateIndex = (props.page || 0) - 3;
-    const nextStartDateIndex = (props.page || 0) + 3;
+    const prevStartDateIndex = (props.page || 0) - 1;
+    const nextStartDateIndex = (props.page || 0) + 1;
 
     return <p className='clearfix text-center'>
         <Link className='btn btn-default pull-left' to={`/productimage/${prevStartDateIndex}`}>Previous</Link>

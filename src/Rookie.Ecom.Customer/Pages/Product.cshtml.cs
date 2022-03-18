@@ -29,7 +29,7 @@ namespace Rookie.Ecom.Customer.Pages
 
         public int currentPage ;
         public string category = null;
-        public int pageItems { get; set; } = 1;
+        public int pageItems { get; set; } = 6;
         public PagedResponseModel<ProductDto> products { get; set; }
         public IEnumerable<CategoryDto> categorys { get; set; }
         public ProductImageInfoDto prodImage { get; set; }

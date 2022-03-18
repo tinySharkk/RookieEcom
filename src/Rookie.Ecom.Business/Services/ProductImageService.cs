@@ -92,6 +92,10 @@ namespace Rookie.Ecom.Business.Services
 
         public async Task UpdateAsync(ProductImageInfoDto productImageInfoDto)
         {
+            Regex getImageIdFromGoogleDrive = new Regex(@"\/d\/(.+)\/");
+            Match id = getImageIdFromGoogleDrive.Match(productImageInfoDto.ImageUrl);
+            productImageInfoDto.ImageUrl = id.ToString().TrimStart('/', 'd').Trim('/');
+
             var productImage = _mapper.Map<ProductImage>(productImageInfoDto);
             await _baseRepository.UpdateAsync(productImage);
         }

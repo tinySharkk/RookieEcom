@@ -66,5 +66,10 @@ namespace Rookie.Ecom.Admin.Controllers
         { 
             return await _userService.GetAllAsync();
         }
+
+        [HttpGet("find")]
+        public async Task<PagedResponseModel<UserInfoDto>>
+            FindAsync(string name, int page = 1, int limit = 10)
+            => await _userService.PagedQueryAsync(name, page, limit);
     }
 }

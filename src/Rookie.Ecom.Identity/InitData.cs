@@ -95,17 +95,17 @@ namespace Rookie.Ecom.Identity
                     AllowedGrantTypes = GrantTypes.Implicit,
                     RedirectUris = new List<string>()
                     {
-                        "https://localhost:5011/callback"
+                        "https://localhost:5011/signin-oidc"
                     },
                     PostLogoutRedirectUris = new List<string>()
                     {
-                        "https://localhost:5011/"
+                        "https://localhost:5011/signout-callback-oidc"
                     },
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "roles"
+                        "roles", "UserNames", "UserIds"
                     },
                     ClientSecrets =
                     {
