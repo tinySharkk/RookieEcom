@@ -5,6 +5,8 @@ using System;
 using Rookie.Ecom.Business.Interfaces;
 using System.Collections.Generic;
 using Rookie.Ecom.Contracts.Dtos;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Rookie.Ecom.Customer.Pages
 {
@@ -24,9 +26,35 @@ namespace Rookie.Ecom.Customer.Pages
 
         public IEnumerable<CartInfoDto> carts { get; set; }
 
-        public async void OnGet()
+        public ProductInfoDto product { get; set; }
+
+        public ProductImageInfoDto prodImage { get; set; }
+
+        public async Task<string> productImage(Guid productId)
         {
-            //carts = await _cartService.PagedQueryAsync(userId);
+            prodImage = await _productImageService.GetByProductIdAsync(productId);
+
+            return prodImage.ImageUrl;
+            //return "1eMRUN40mByRkFWBS2R1N1ZFFZGCrxdYx";
+        }
+
+        public async Task<string> productName(Guid productId)
+        {
+            product = await _productService.GetByIdAsync(productId);
+            return product.Name;
+        }
+
+        public async Task<decimal> productPrice(Guid productId)
+        {
+            product = await _productService.GetByIdAsync(productId);
+            return product.Price;
+        }
+
+
+        public async Task OnGet()
+        {
+            var userId = User.Claims.Where(x => x.Type == "UserId").SingleOrDefault().Value;
+            carts = await _cartService.GetAllByUserIdAsync(Guid.Parse(userId));
         }
     }
 }

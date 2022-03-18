@@ -27,7 +27,6 @@
             }
         </div>
     </div>
-
     <!-- Single Product Description -->
     <div class="single_product_desc clearfix">
         <a href="#">
@@ -56,20 +55,22 @@
         <p class="product-price"> $ @(Model.product.Price)</p>
         <p class="product-desc"> @(Model.product.Desc)</p>
 
+        <form method="post" asp-controller="Cart" asp-action="AddToCart" class="checkout-form" >
         <div class="row product-quantity">
             <div class="pro-qty">
-                <input type="text" value="1">
+                <input id="Quanlity" name="Quanlity" type="text" value="1">
             </div>
         </div>
-
+        <input id="ProductId" name="ProductId" value="@Model.productId" hidden />
         <!-- Form -->
-        <form class="cart-form clearfix" method="post">
+        @*<form class="cart-form clearfix" method="post">*@
 
             <!-- Cart & Favourite Box -->
             <div class="cart-fav-box d-flex align-items-center">
                 <!-- Cart -->
-                <button type="submit" name="addtocart" value="5" class="btn essence-btn">Add to cart</button>
+                <button type="submit" class="btn essence-btn">Add to cart</button>
             </div>
+        @*</form>*@
         </form>
     </div>
 </section>

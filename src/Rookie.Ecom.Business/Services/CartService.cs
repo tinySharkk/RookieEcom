@@ -41,6 +41,14 @@ namespace Rookie.Ecom.Business.Services
             return _mapper.Map<List<CartInfoDto>>(carts);
         }
 
+        public async Task<IEnumerable<CartInfoDto>> GetAllByUserIdAsync(Guid userId)
+        {
+            var carts = await _baseRepository.GetAllAsync();
+            var userCart = carts.Where(x => x.UserId == userId);
+
+            return _mapper.Map<List<CartInfoDto>>(userCart);
+        }
+
         public async Task<CartInfoDto> GetByCategory(Guid categoryId)
         {
             throw new NotImplementedException();
